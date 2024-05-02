@@ -24,6 +24,7 @@ namespace RiskOfCoins {
 		/// el contenido de este método con el editor de código.
 		/// </summary>
 		private void InitializeComponent() {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FMain));
 			this.tbPath = new ControLib.SleekTextBox();
 			this.btnPath = new ControLib.SleekButton();
 			this.pnlRowInputPath = new System.Windows.Forms.Panel();
@@ -479,14 +480,13 @@ namespace RiskOfCoins {
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnQuit;
 			this.ClientSize = new System.Drawing.Size(468, 400);
-			this.ControlBox = false;
 			this.Controls.Add(this.tlpCenter);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MaximumSize = new System.Drawing.Size(690, 500);
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(432, 416);
 			this.Name = "FMain";
-			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Risk of Coins";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FPrincipal_FormClosed);
