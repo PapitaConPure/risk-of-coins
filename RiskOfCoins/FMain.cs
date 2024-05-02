@@ -200,9 +200,18 @@ namespace RiskOfCoins {
 
 			int coins;
 			if(!int.TryParse(this.tbLunarCoins.InputText, out coins)) {
-				if(long.TryParse(this.tbLunarCoins.InputText, out _))
+				if(long.TryParse(this.tbLunarCoins.InputText, out _)) {
 					coins = int.MaxValue;
-				else return;
+					this.tbLunarCoins.InputText = coins.ToString();
+				} else {
+					MessageBox.Show($"Lunar coins amount must be a positive integer up to {int.MaxValue:###,###,###,###}", "Invalid value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return;
+				}
+			}
+
+			if(coins < 0) {
+				MessageBox.Show($"Lunar coins amount must be a positive integer up to {int.MaxValue:###,###,###,###}", "Invalid value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
 			}
 
 			string profilesPath = this.wizard.GetFullPath();
