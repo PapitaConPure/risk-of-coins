@@ -104,7 +104,7 @@ namespace RiskOfCoins {
 			this.btnPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPath.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
 			this.btnPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
-			this.btnPath.Location = new System.Drawing.Point(404, 8);
+			this.btnPath.Location = new System.Drawing.Point(408, 8);
 			this.btnPath.Name = "btnPath";
 			this.btnPath.PercentualRadius = true;
 			this.btnPath.Size = new System.Drawing.Size(42, 40);
@@ -121,10 +121,10 @@ namespace RiskOfCoins {
 			this.pnlRowInputPath.Controls.Add(this.panel6);
 			this.pnlRowInputPath.Controls.Add(this.btnPath);
 			this.pnlRowInputPath.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnlRowInputPath.Location = new System.Drawing.Point(2, 70);
+			this.pnlRowInputPath.Location = new System.Drawing.Point(2, 30);
 			this.pnlRowInputPath.Name = "pnlRowInputPath";
 			this.pnlRowInputPath.Padding = new System.Windows.Forms.Padding(8);
-			this.pnlRowInputPath.Size = new System.Drawing.Size(454, 56);
+			this.pnlRowInputPath.Size = new System.Drawing.Size(458, 56);
 			this.pnlRowInputPath.TabIndex = 1;
 			// 
 			// lblPath
@@ -162,7 +162,7 @@ namespace RiskOfCoins {
 			this.tbUserId.PlaceHolderColor = System.Drawing.Color.DimGray;
 			this.tbUserId.ReadOnly = false;
 			this.tbUserId.SelectAllOnClick = true;
-			this.tbUserId.Size = new System.Drawing.Size(92, 40);
+			this.tbUserId.Size = new System.Drawing.Size(96, 40);
 			this.tbUserId.Style = ControLib.SleekTextBox.TextBoxStyle.RoundRect;
 			this.tbUserId.TabIndex = 2;
 			this.tbUserId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -171,7 +171,7 @@ namespace RiskOfCoins {
 			// panel6
 			// 
 			this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel6.Location = new System.Drawing.Point(384, 8);
+			this.panel6.Location = new System.Drawing.Point(388, 8);
 			this.panel6.Name = "panel6";
 			this.panel6.Size = new System.Drawing.Size(20, 40);
 			this.panel6.TabIndex = 4;
@@ -189,7 +189,7 @@ namespace RiskOfCoins {
 			this.tlpCenter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tlpCenter.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tlpCenter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tlpCenter.Size = new System.Drawing.Size(464, 454);
+			this.tlpCenter.Size = new System.Drawing.Size(468, 377);
 			this.tlpCenter.TabIndex = 3;
 			// 
 			// pnlForm
@@ -205,20 +205,20 @@ namespace RiskOfCoins {
 			this.pnlForm.Controls.Add(this.pnlRowInputPath);
 			this.pnlForm.Controls.Add(this.pnlRowLabelPath);
 			this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnlForm.Location = new System.Drawing.Point(3, 23);
+			this.pnlForm.Location = new System.Drawing.Point(3, 4);
 			this.pnlForm.Name = "pnlForm";
 			this.pnlForm.Padding = new System.Windows.Forms.Padding(2);
-			this.pnlForm.Size = new System.Drawing.Size(458, 408);
+			this.pnlForm.Size = new System.Drawing.Size(462, 368);
 			this.pnlForm.TabIndex = 3;
 			// 
 			// pnlRowInputQuit
 			// 
 			this.pnlRowInputQuit.Controls.Add(this.btnQuit);
 			this.pnlRowInputQuit.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnlRowInputQuit.Location = new System.Drawing.Point(2, 350);
+			this.pnlRowInputQuit.Location = new System.Drawing.Point(2, 310);
 			this.pnlRowInputQuit.Name = "pnlRowInputQuit";
 			this.pnlRowInputQuit.Padding = new System.Windows.Forms.Padding(8);
-			this.pnlRowInputQuit.Size = new System.Drawing.Size(454, 56);
+			this.pnlRowInputQuit.Size = new System.Drawing.Size(458, 56);
 			this.pnlRowInputQuit.TabIndex = 8;
 			// 
 			// btnQuit
@@ -237,7 +237,7 @@ namespace RiskOfCoins {
 			this.btnQuit.Location = new System.Drawing.Point(8, 8);
 			this.btnQuit.Name = "btnQuit";
 			this.btnQuit.PercentualRadius = true;
-			this.btnQuit.Size = new System.Drawing.Size(438, 40);
+			this.btnQuit.Size = new System.Drawing.Size(442, 40);
 			this.btnQuit.TabIndex = 0;
 			this.btnQuit.Text = "Quit";
 			this.btnQuit.UseVisualStyleBackColor = false;
@@ -246,10 +246,10 @@ namespace RiskOfCoins {
 			// pnlRowSplit3
 			// 
 			this.pnlRowSplit3.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnlRowSplit3.Location = new System.Drawing.Point(2, 322);
+			this.pnlRowSplit3.Location = new System.Drawing.Point(2, 282);
 			this.pnlRowSplit3.Name = "pnlRowSplit3";
 			this.pnlRowSplit3.Padding = new System.Windows.Forms.Padding(8, 8, 8, 6);
-			this.pnlRowSplit3.Size = new System.Drawing.Size(454, 28);
+			this.pnlRowSplit3.Size = new System.Drawing.Size(458, 28);
 			this.pnlRowSplit3.TabIndex = 7;
 			// 
 			// pnlRowInputLunarCoins
@@ -260,10 +260,10 @@ namespace RiskOfCoins {
 			this.pnlRowInputLunarCoins.Controls.Add(this.tbLunarCoins);
 			this.pnlRowInputLunarCoins.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnlRowInputLunarCoins.Enabled = false;
-			this.pnlRowInputLunarCoins.Location = new System.Drawing.Point(2, 266);
+			this.pnlRowInputLunarCoins.Location = new System.Drawing.Point(2, 226);
 			this.pnlRowInputLunarCoins.Name = "pnlRowInputLunarCoins";
 			this.pnlRowInputLunarCoins.Padding = new System.Windows.Forms.Padding(8);
-			this.pnlRowInputLunarCoins.Size = new System.Drawing.Size(454, 56);
+			this.pnlRowInputLunarCoins.Size = new System.Drawing.Size(458, 56);
 			this.pnlRowInputLunarCoins.TabIndex = 6;
 			// 
 			// btnApplyCoins
@@ -281,7 +281,7 @@ namespace RiskOfCoins {
 			this.btnApplyCoins.Location = new System.Drawing.Point(251, 8);
 			this.btnApplyCoins.Name = "btnApplyCoins";
 			this.btnApplyCoins.PercentualRadius = true;
-			this.btnApplyCoins.Size = new System.Drawing.Size(195, 40);
+			this.btnApplyCoins.Size = new System.Drawing.Size(199, 40);
 			this.btnApplyCoins.TabIndex = 1;
 			this.btnApplyCoins.Text = "Apply";
 			this.btnApplyCoins.UseVisualStyleBackColor = false;
@@ -338,20 +338,20 @@ namespace RiskOfCoins {
 			// pnlRowSplit2
 			// 
 			this.pnlRowSplit2.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnlRowSplit2.Location = new System.Drawing.Point(2, 238);
+			this.pnlRowSplit2.Location = new System.Drawing.Point(2, 198);
 			this.pnlRowSplit2.Name = "pnlRowSplit2";
 			this.pnlRowSplit2.Padding = new System.Windows.Forms.Padding(8, 8, 8, 6);
-			this.pnlRowSplit2.Size = new System.Drawing.Size(454, 28);
+			this.pnlRowSplit2.Size = new System.Drawing.Size(458, 28);
 			this.pnlRowSplit2.TabIndex = 5;
 			// 
 			// pnlRowInputProfiles
 			// 
 			this.pnlRowInputProfiles.Controls.Add(this.tlpProfiles);
 			this.pnlRowInputProfiles.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnlRowInputProfiles.Location = new System.Drawing.Point(2, 182);
+			this.pnlRowInputProfiles.Location = new System.Drawing.Point(2, 142);
 			this.pnlRowInputProfiles.Name = "pnlRowInputProfiles";
 			this.pnlRowInputProfiles.Padding = new System.Windows.Forms.Padding(5);
-			this.pnlRowInputProfiles.Size = new System.Drawing.Size(454, 56);
+			this.pnlRowInputProfiles.Size = new System.Drawing.Size(458, 56);
 			this.pnlRowInputProfiles.TabIndex = 4;
 			// 
 			// tlpProfiles
@@ -367,7 +367,7 @@ namespace RiskOfCoins {
 			this.tlpProfiles.Name = "tlpProfiles";
 			this.tlpProfiles.RowCount = 1;
 			this.tlpProfiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tlpProfiles.Size = new System.Drawing.Size(444, 46);
+			this.tlpProfiles.Size = new System.Drawing.Size(448, 46);
 			this.tlpProfiles.TabIndex = 0;
 			// 
 			// btnLoadProfiles
@@ -382,10 +382,10 @@ namespace RiskOfCoins {
 			this.btnLoadProfiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnLoadProfiles.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
 			this.btnLoadProfiles.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
-			this.btnLoadProfiles.Location = new System.Drawing.Point(225, 3);
+			this.btnLoadProfiles.Location = new System.Drawing.Point(227, 3);
 			this.btnLoadProfiles.Name = "btnLoadProfiles";
 			this.btnLoadProfiles.PercentualRadius = true;
-			this.btnLoadProfiles.Size = new System.Drawing.Size(216, 40);
+			this.btnLoadProfiles.Size = new System.Drawing.Size(218, 40);
 			this.btnLoadProfiles.TabIndex = 1;
 			this.btnLoadProfiles.Text = "Load Profiles Backup";
 			this.btnLoadProfiles.UseVisualStyleBackColor = false;
@@ -406,7 +406,7 @@ namespace RiskOfCoins {
 			this.btnSaveProfiles.Location = new System.Drawing.Point(3, 3);
 			this.btnSaveProfiles.Name = "btnSaveProfiles";
 			this.btnSaveProfiles.PercentualRadius = true;
-			this.btnSaveProfiles.Size = new System.Drawing.Size(216, 40);
+			this.btnSaveProfiles.Size = new System.Drawing.Size(218, 40);
 			this.btnSaveProfiles.TabIndex = 0;
 			this.btnSaveProfiles.Text = "Save Profiles Backup";
 			this.btnSaveProfiles.UseVisualStyleBackColor = false;
@@ -417,10 +417,10 @@ namespace RiskOfCoins {
 			this.pnlRowLabelProfiles.AutoSize = true;
 			this.pnlRowLabelProfiles.Controls.Add(this.lbProfiles);
 			this.pnlRowLabelProfiles.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnlRowLabelProfiles.Location = new System.Drawing.Point(2, 154);
+			this.pnlRowLabelProfiles.Location = new System.Drawing.Point(2, 114);
 			this.pnlRowLabelProfiles.Name = "pnlRowLabelProfiles";
 			this.pnlRowLabelProfiles.Padding = new System.Windows.Forms.Padding(8, 8, 8, 0);
-			this.pnlRowLabelProfiles.Size = new System.Drawing.Size(454, 28);
+			this.pnlRowLabelProfiles.Size = new System.Drawing.Size(458, 28);
 			this.pnlRowLabelProfiles.TabIndex = 3;
 			// 
 			// lbProfiles
@@ -438,10 +438,10 @@ namespace RiskOfCoins {
 			// pnlRowSplit1
 			// 
 			this.pnlRowSplit1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnlRowSplit1.Location = new System.Drawing.Point(2, 126);
+			this.pnlRowSplit1.Location = new System.Drawing.Point(2, 86);
 			this.pnlRowSplit1.Name = "pnlRowSplit1";
 			this.pnlRowSplit1.Padding = new System.Windows.Forms.Padding(8, 8, 8, 6);
-			this.pnlRowSplit1.Size = new System.Drawing.Size(454, 28);
+			this.pnlRowSplit1.Size = new System.Drawing.Size(458, 28);
 			this.pnlRowSplit1.TabIndex = 2;
 			// 
 			// pnlRowLabelPath
@@ -453,7 +453,7 @@ namespace RiskOfCoins {
 			this.pnlRowLabelPath.Location = new System.Drawing.Point(2, 2);
 			this.pnlRowLabelPath.Name = "pnlRowLabelPath";
 			this.pnlRowLabelPath.Padding = new System.Windows.Forms.Padding(8, 8, 8, 0);
-			this.pnlRowLabelPath.Size = new System.Drawing.Size(454, 68);
+			this.pnlRowLabelPath.Size = new System.Drawing.Size(458, 28);
 			this.pnlRowLabelPath.TabIndex = 0;
 			// 
 			// lbPath
@@ -463,10 +463,9 @@ namespace RiskOfCoins {
 			this.lbPath.Font = new System.Drawing.Font("Segoe UI", 11F);
 			this.lbPath.Location = new System.Drawing.Point(8, 8);
 			this.lbPath.Name = "lbPath";
-			this.lbPath.Size = new System.Drawing.Size(269, 60);
+			this.lbPath.Size = new System.Drawing.Size(312, 20);
 			this.lbPath.TabIndex = 0;
-			this.lbPath.Text = "Where is your Steam \"userdata\" folder?\r\nWhat are the numbers inside of it?\r\n(You " +
-    "only have to set this up once)";
+			this.lbPath.Text = "Steam \"userdata\" + (steam user number) path";
 			this.lbPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// fbdPath
@@ -479,13 +478,13 @@ namespace RiskOfCoins {
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnQuit;
-			this.ClientSize = new System.Drawing.Size(464, 454);
+			this.ClientSize = new System.Drawing.Size(468, 377);
 			this.ControlBox = false;
 			this.Controls.Add(this.tlpCenter);
 			this.MaximizeBox = false;
 			this.MaximumSize = new System.Drawing.Size(690, 500);
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(432, 454);
+			this.MinimumSize = new System.Drawing.Size(432, 416);
 			this.Name = "FMain";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

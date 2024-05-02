@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace RiskOfCoins {
 	[Serializable]
 	class CoinsWizard {
-		private const string REGEX_PATH_STEAM_USERDATA_EXT = "((.+[\\\\/])+userdata)[\\\\/](\\d{1,11})";
+		private const string REGEX_PATH_STEAM_USERDATA_EXT = "((.+\\\\)+userdata)\\\\(\\d{1,11})";
 		private string userdataPath;
 
 		public CoinsWizard(string path = "C:\\Program Files (x86)\\Steam\\userdata") {
@@ -48,7 +48,7 @@ namespace RiskOfCoins {
 					return;
 				}
 
-				this.userdataPath = value;
+				this.userdataPath = path;
 
 				if(userId != null)
 					this.UserId = userId;
