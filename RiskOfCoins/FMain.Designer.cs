@@ -189,7 +189,7 @@ namespace RiskOfCoins {
 			this.tlpCenter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tlpCenter.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tlpCenter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tlpCenter.Size = new System.Drawing.Size(468, 377);
+			this.tlpCenter.Size = new System.Drawing.Size(468, 400);
 			this.tlpCenter.TabIndex = 3;
 			// 
 			// pnlForm
@@ -205,7 +205,7 @@ namespace RiskOfCoins {
 			this.pnlForm.Controls.Add(this.pnlRowInputPath);
 			this.pnlForm.Controls.Add(this.pnlRowLabelPath);
 			this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnlForm.Location = new System.Drawing.Point(3, 4);
+			this.pnlForm.Location = new System.Drawing.Point(3, 16);
 			this.pnlForm.Name = "pnlForm";
 			this.pnlForm.Padding = new System.Windows.Forms.Padding(2);
 			this.pnlForm.Size = new System.Drawing.Size(462, 368);
@@ -463,9 +463,9 @@ namespace RiskOfCoins {
 			this.lbPath.Font = new System.Drawing.Font("Segoe UI", 11F);
 			this.lbPath.Location = new System.Drawing.Point(8, 8);
 			this.lbPath.Name = "lbPath";
-			this.lbPath.Size = new System.Drawing.Size(312, 20);
+			this.lbPath.Size = new System.Drawing.Size(314, 20);
 			this.lbPath.TabIndex = 0;
-			this.lbPath.Text = "Steam \"userdata\" + (steam user number) path";
+			this.lbPath.Text = "Steam \"userdata\" + (Steam user number) path";
 			this.lbPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// fbdPath
@@ -478,7 +478,7 @@ namespace RiskOfCoins {
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnQuit;
-			this.ClientSize = new System.Drawing.Size(468, 377);
+			this.ClientSize = new System.Drawing.Size(468, 400);
 			this.ControlBox = false;
 			this.Controls.Add(this.tlpCenter);
 			this.MaximizeBox = false;
