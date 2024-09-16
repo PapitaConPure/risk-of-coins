@@ -46,10 +46,10 @@ namespace RiskOfCoins {
 			this.btnLoadProfiles = new ControLib.SleekButton();
 			this.btnSaveProfiles = new ControLib.SleekButton();
 			this.pnlRowLabelProfiles = new System.Windows.Forms.Panel();
-			this.lbProfiles = new System.Windows.Forms.Label();
+			this.lblProfiles = new System.Windows.Forms.Label();
 			this.pnlRowSplit1 = new System.Windows.Forms.Panel();
 			this.pnlRowLabelPath = new System.Windows.Forms.Panel();
-			this.lbPath = new System.Windows.Forms.Label();
+			this.lblPath = new System.Windows.Forms.Label();
 			this.fbdPath = new System.Windows.Forms.FolderBrowserDialog();
 			this.pnlRowInputPath.SuspendLayout();
 			this.tlpCenter.SuspendLayout();
@@ -397,7 +397,7 @@ namespace RiskOfCoins {
 			// pnlRowLabelProfiles
 			// 
 			this.pnlRowLabelProfiles.AutoSize = true;
-			this.pnlRowLabelProfiles.Controls.Add(this.lbProfiles);
+			this.pnlRowLabelProfiles.Controls.Add(this.lblProfiles);
 			this.pnlRowLabelProfiles.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnlRowLabelProfiles.Location = new System.Drawing.Point(2, 114);
 			this.pnlRowLabelProfiles.Name = "pnlRowLabelProfiles";
@@ -405,17 +405,17 @@ namespace RiskOfCoins {
 			this.pnlRowLabelProfiles.Size = new System.Drawing.Size(534, 28);
 			this.pnlRowLabelProfiles.TabIndex = 3;
 			// 
-			// lbProfiles
+			// lblProfiles
 			// 
-			this.lbProfiles.AutoSize = true;
-			this.lbProfiles.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.lbProfiles.Font = new System.Drawing.Font("Segoe UI", 11F);
-			this.lbProfiles.Location = new System.Drawing.Point(8, 8);
-			this.lbProfiles.Name = "lbProfiles";
-			this.lbProfiles.Size = new System.Drawing.Size(402, 20);
-			this.lbProfiles.TabIndex = 1;
-			this.lbProfiles.Text = "You must backup of your RoR2 profiles before editing coins";
-			this.lbProfiles.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.lblProfiles.AutoSize = true;
+			this.lblProfiles.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.lblProfiles.Font = new System.Drawing.Font("Segoe UI", 11F);
+			this.lblProfiles.Location = new System.Drawing.Point(8, 8);
+			this.lblProfiles.Name = "lblProfiles";
+			this.lblProfiles.Size = new System.Drawing.Size(402, 20);
+			this.lblProfiles.TabIndex = 1;
+			this.lblProfiles.Text = "You must backup of your RoR2 profiles before editing coins";
+			this.lblProfiles.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// pnlRowSplit1
 			// 
@@ -430,7 +430,7 @@ namespace RiskOfCoins {
 			// 
 			this.pnlRowLabelPath.AutoSize = true;
 			this.pnlRowLabelPath.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.pnlRowLabelPath.Controls.Add(this.lbPath);
+			this.pnlRowLabelPath.Controls.Add(this.lblPath);
 			this.pnlRowLabelPath.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnlRowLabelPath.Location = new System.Drawing.Point(2, 2);
 			this.pnlRowLabelPath.Name = "pnlRowLabelPath";
@@ -438,17 +438,17 @@ namespace RiskOfCoins {
 			this.pnlRowLabelPath.Size = new System.Drawing.Size(534, 28);
 			this.pnlRowLabelPath.TabIndex = 0;
 			// 
-			// lbPath
+			// lblPath
 			// 
-			this.lbPath.AutoSize = true;
-			this.lbPath.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.lbPath.Font = new System.Drawing.Font("Segoe UI", 11F);
-			this.lbPath.Location = new System.Drawing.Point(8, 8);
-			this.lbPath.Name = "lbPath";
-			this.lbPath.Size = new System.Drawing.Size(249, 20);
-			this.lbPath.TabIndex = 0;
-			this.lbPath.Text = "Steam \"userdata\" path + Steam user";
-			this.lbPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.lblPath.AutoSize = true;
+			this.lblPath.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.lblPath.Font = new System.Drawing.Font("Segoe UI", 11F);
+			this.lblPath.Location = new System.Drawing.Point(8, 8);
+			this.lblPath.Name = "lblPath";
+			this.lblPath.Size = new System.Drawing.Size(249, 20);
+			this.lblPath.TabIndex = 0;
+			this.lblPath.Text = "Steam \"userdata\" path + Steam user";
+			this.lblPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// fbdPath
 			// 
@@ -499,7 +499,7 @@ namespace RiskOfCoins {
 		private System.Windows.Forms.Panel pnlRowInputLunarCoins;
 		private ControLib.SleekTextBox tbLunarCoins;
 		private System.Windows.Forms.Panel pnlRowLabelPath;
-		private System.Windows.Forms.Label lbPath;
+		private System.Windows.Forms.Label lblPath;
 		private System.Windows.Forms.Panel pnlRowSplit1;
 		private System.Windows.Forms.Panel pnlRowInputProfiles;
 		private System.Windows.Forms.Panel pnlRowInputQuit;
@@ -511,7 +511,7 @@ namespace RiskOfCoins {
 		private ControLib.SleekButton btnLoadProfiles;
 		private ControLib.SleekButton btnSaveProfiles;
 		private System.Windows.Forms.Panel pnlRowLabelProfiles;
-		private System.Windows.Forms.Label lbProfiles;
+		private System.Windows.Forms.Label lblProfiles;
 		private System.Windows.Forms.FolderBrowserDialog fbdPath;
 		private System.Windows.Forms.Label lblLunarCoins;
 		private System.Windows.Forms.Panel panel6;

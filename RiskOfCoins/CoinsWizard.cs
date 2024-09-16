@@ -9,47 +9,41 @@ namespace RiskOfCoins {
 	[Serializable]
 	class CoinsWizard {
 		private const string STEAM_ROR2_ID = "632360";
-		private const string REGEX_PATH_STEAM_USERDATA_EXT = "((.+\\\\)+userdata)\\\\(\\d{1,11})";
 		private const string REGEX_INFO_STEAM_USERNAME = "\"PersonaName\"\\t\\t\"(.{1,32})\"";
-		private string userdataPath;
+		private string steamPath;
 
-		public CoinsWizard(string path = "C:\\Program Files (x86)\\Steam\\userdata") {
-			this.UserdataPath = path;
+		public CoinsWizard(string path = "C:\\Program Files (x86)\\Steam") {
+			this.SteamPath = path;
 			this.LunarCoins = int.MaxValue;
 		}
 
-		public string UserdataPath {
+		public string SteamPath {
 			set {
 				if(value is null || !Directory.Exists(value)) {
-					this.userdataPath = null;
+					this.steamPath = null;
 					return;
 				}
 
-				string path = value;
-
-				path = path.Replace("/", "\\");
+				string path = value.Replace("/", "\\");
 
 				if(path.EndsWith("\\"))
 					path = path.Remove(path.Length - 1);
 
-				if(!path.EndsWith("userdata")) {
-					Match match = Regex.Match(path, REGEX_PATH_STEAM_USERDATA_EXT);
+				if(path.EndsWith("userdata")) {
+					path = path.Remove(path.Length - "userdata".Length);
+				} else {
+					string userdataPath = Path.Combine(path, "userdata");
 
-					if(match.Success) {
-						path = match.Groups[1].Value;
-					} else
-						path = Path.Combine(path, "userdata");
+					if(!Directory.Exists(userdataPath)) {
+						this.steamPath = null;
+						return;
+					}
 				}
 
-				if(!Directory.Exists(path)) {
-					this.userdataPath = null;
-					return;
-				}
-
-				this.userdataPath = path;
+				this.steamPath = path;
 			}
 			get {
-				return this.userdataPath;
+				return this.steamPath;
 			}
 		}
 
@@ -60,11 +54,14 @@ namespace RiskOfCoins {
 		public List<User> FetchUsers() {
 			List<User> users = new List<User>();
 
-			if(this.userdataPath is null || !Directory.Exists(this.userdataPath))
+			if(this.steamPath is null)
 				return users;
 
-			string[] directories = Directory.GetDirectories(this.UserdataPath);
+			string userdataPath = Path.Combine(this.steamPath, "userdata");
+			if(!Directory.Exists(userdataPath))
+				return users;
 
+			string[] directories = Directory.GetDirectories(userdataPath);
 			if(directories.Length == 0)
 				return users;
 
@@ -112,12 +109,13 @@ namespace RiskOfCoins {
 		}
 
 		public string GetFullPath() {
-			if(string.IsNullOrEmpty(this.UserdataPath) || this.User is null)
+			if(string.IsNullOrEmpty(this.SteamPath) || this.User is null)
 				return null;
 
-			string restOfPath = Path.Combine(STEAM_ROR2_ID, "remote", "UserProfiles");
+			string userPath = Path.Combine("userdata", this.User.Id);
+			string gamePath = Path.Combine(STEAM_ROR2_ID, "remote", "UserProfiles");
 
-			return Path.Combine(this.UserdataPath, this.User.Id, restOfPath);
+			return Path.Combine(this.SteamPath, userPath, gamePath);
 		}
 
 		public bool IsFullPathValid() {
@@ -125,8 +123,12 @@ namespace RiskOfCoins {
 			return !string.IsNullOrEmpty(fullPath) && Directory.Exists(fullPath);
 		}
 
-		public bool IsUserdataPathValid() {
-			return !string.IsNullOrEmpty(this.userdataPath) && Directory.Exists(this.userdataPath);
+		public bool IsSteamPathValid() {
+			if(string.IsNullOrEmpty(this.steamPath))
+				return false;
+
+			string userdataPath = Path.Combine(this.steamPath, "userdata");
+			return Directory.Exists(userdataPath);
 		}
 	}
 }
