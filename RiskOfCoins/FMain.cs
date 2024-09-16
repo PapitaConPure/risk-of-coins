@@ -52,24 +52,43 @@ namespace RiskOfCoins {
 
 		private void FPrincipal_Load(object sender, EventArgs e) {
 			string path = this.wizard.UserdataPath;
-			string userId = this.wizard.UserId;
 			string coins = (this.wizard.LunarCoins > 0) ? this.wizard.LunarCoins.ToString() : null;
 
 			if(!string.IsNullOrEmpty(path))
 				this.tbPath.InputText = path;
 
-			if(!string.IsNullOrEmpty(userId))
-				this.tbUserId.InputText = userId;
+			this.UpdateUsers();
+
+			if(!(this.wizard.User is null)) {
+				User searchedUser = this.wizard.User;
+				int foundIndex = -1;
+				int userIndex = 0;
+				foreach(User u in this.cmbUser.Items) {
+					if(searchedUser.Id == u.Id) {
+						foundIndex = userIndex;
+						break;
+					}
+					userIndex++;
+				}
+
+				if(foundIndex >= 0 && foundIndex < this.cmbUser.Items.Count)
+					this.cmbUser.SelectedIndex = foundIndex;
+			}
 
 			if(!string.IsNullOrEmpty(coins))
 				this.tbLunarCoins.InputText = coins;
 
-			this.btnSaveProfiles.Enabled = this.wizard.IsUserdataPathValid();
+			this.btnSaveProfiles.Enabled = this.wizard.IsFullPathValid();
 
 			this.fbdPath.Description = string.Join("\n",
-				"Select the Steam \"userdata\" folder.",
-				"It's usually inside of 'C:\\Program Files (x86)\\'.",
-				"You can also select the numbered folder in \"userdata\" here");
+				"Select your Steam folder or the \"userdata\" folder inside.",
+				"Usually found in 'C:\\Program Files (x86)\\'.");
+		}
+
+		private void UpdateUsers() {
+			this.cmbUser.Items.Clear();
+			foreach(User u in this.wizard.FetchUsers())
+				this.cmbUser.Items.Add(u);
 		}
 
 		private void BtnPath_Click(object sender, EventArgs e) {
@@ -80,19 +99,23 @@ namespace RiskOfCoins {
 			if(this.fbdPath.ShowDialog()!= DialogResult.OK)
 				return;
 
-			this.wizard.UserdataPath = this.fbdPath.SelectedPath;
-
 			if(!this.wizard.IsUserdataPathValid()) {
 				MessageBox.Show("You must select a valid Steam \"userdata\" folder!", "Invalid \"userdata\" Path", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return;
 			}
 
+			this.wizard.UserdataPath = this.fbdPath.SelectedPath;
+			this.UpdateUsers();
 			this.tbPath.InputText = this.wizard.UserdataPath;
+			this.btnSaveProfiles.Enabled = this.wizard.IsFullPathValid();
+		}
 
-			if(this.wizard.TryMatchUserId())
-				this.tbUserId.InputText = this.wizard.UserId;
+		private void CmbUser_OnSelectedIndexChanged(object sender, EventArgs e) {
+			if(this.cmbUser.SelectedIndex < 0)
+				return;
 
-			this.btnSaveProfiles.Enabled = true;
+			this.wizard.User = this.cmbUser.SelectedItem as User;
+			this.btnSaveProfiles.Enabled = this.wizard.IsFullPathValid();
 		}
 
 		private void BtnSaveProfiles_Click(object sender, EventArgs e) {
@@ -256,15 +279,17 @@ namespace RiskOfCoins {
 			if(this.wizard is null)
 				return;
 
-			FileStream fs = null;
+			if(string.IsNullOrEmpty(this.wizard.UserdataPath))
+				this.wizard.UserdataPath = this.tbPath.InputText;
 
-			this.wizard.UserdataPath = this.tbPath.InputText;
-			this.wizard.UserId = this.tbUserId.InputText;
+			if(this.wizard.User is null)
+				this.wizard.User = this.cmbUser.SelectedItem as User;
 
 			int lunarCoins;
 			if(int.TryParse(this.tbLunarCoins.InputText, out lunarCoins))
 				this.wizard.LunarCoins = lunarCoins;
 
+			FileStream fs = null;
 			try {
 				fs = new FileStream(this.dirBin, FileMode.OpenOrCreate, FileAccess.Write);
 				BinaryFormatter bf = new BinaryFormatter();
@@ -282,15 +307,20 @@ namespace RiskOfCoins {
 		private bool ExpectPath() {
 			if(!this.wizard.IsUserdataPathValid()) {
 				MessageBox.Show("The selected Steam \"userdata\" path isn't a folder or doesn't exist!", "Invalid \"userdata\" Path", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				this.btnPath.Focus();
 				this.tbPath.ResetText();
+				this.btnPath.Focus();
 				return false;
 			}
 
 			if(!this.wizard.IsFullPathValid()) {
-				MessageBox.Show("The user number should be a valid number. Check inside the \"userdata\" folder!", "Invalid user number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				this.btnPath.Focus();
-				this.tbUserId.ResetText();
+				MessageBox.Show("The user wasn't valid. Check inside the \"userdata\" folder!", "Invalid user number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				this.cmbUser.SelectedIndex = -1;
+
+				this.cmbUser.Items.Clear();
+				foreach(User user in this.wizard.FetchUsers())
+					this.cmbUser.Items.Add(user);
+
+				this.cmbUser.Focus();
 				return false;
 			}
 

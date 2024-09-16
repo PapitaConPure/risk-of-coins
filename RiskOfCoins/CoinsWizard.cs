@@ -4,17 +4,17 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace RiskOfCoins {
 	[Serializable]
 	class CoinsWizard {
+		private const string STEAM_ROR2_ID = "632360";
 		private const string REGEX_PATH_STEAM_USERDATA_EXT = "((.+\\\\)+userdata)\\\\(\\d{1,11})";
+		private const string REGEX_INFO_STEAM_USERNAME = "\"PersonaName\"\\t\\t\"(.{1,32})\"";
 		private string userdataPath;
 
 		public CoinsWizard(string path = "C:\\Program Files (x86)\\Steam\\userdata") {
 			this.UserdataPath = path;
-			this.TryMatchUserId();
 			this.LunarCoins = int.MaxValue;
 		}
 
@@ -26,7 +26,6 @@ namespace RiskOfCoins {
 				}
 
 				string path = value;
-				string userId = null;
 
 				path = path.Replace("/", "\\");
 
@@ -38,7 +37,6 @@ namespace RiskOfCoins {
 
 					if(match.Success) {
 						path = match.Groups[1].Value;
-						userId = match.Groups[3].Value;
 					} else
 						path = Path.Combine(path, "userdata");
 				}
@@ -49,18 +47,50 @@ namespace RiskOfCoins {
 				}
 
 				this.userdataPath = path;
-
-				if(userId != null)
-					this.UserId = userId;
 			}
 			get {
 				return this.userdataPath;
 			}
 		}
 
-		public string UserId { set; get; }
+		public User User { set; get; }
 
 		public int LunarCoins { set; get; }
+
+		public List<User> FetchUsers() {
+			List<User> users = new List<User>();
+
+			if(this.userdataPath is null || !Directory.Exists(this.userdataPath))
+				return users;
+
+			string[] directories = Directory.GetDirectories(this.UserdataPath);
+
+			if(directories.Length == 0)
+				return users;
+
+			string uconfFile, uRoR2Dir, userId, userData, userName;
+			Match userNameMatch;
+			foreach(string userPath in directories) {
+				uconfFile = Path.Combine(userPath, "config", "localconfig.vdf");
+				if(!File.Exists(uconfFile))
+					continue;
+
+				uRoR2Dir = Path.Combine(userPath, STEAM_ROR2_ID, "remote", "UserProfiles");
+				if(!Directory.Exists(uRoR2Dir))
+					continue;
+
+				userData = File.ReadAllText(uconfFile, Encoding.UTF8);
+				userNameMatch = Regex.Match(userData, REGEX_INFO_STEAM_USERNAME);
+				if(userNameMatch.Groups.Count < 2)
+					continue;
+
+				userId = userPath.Split('\\').Last();
+				userName = userNameMatch.Groups[1].Value;
+				users.Add(new User(userId, userName));
+			}
+
+			return users;
+		}
 
 		public string[] GetProfileFilenames() {
 			if(!this.IsFullPathValid())
@@ -81,29 +111,13 @@ namespace RiskOfCoins {
 			return profileFilenames.ToArray();
 		}
 
-		public bool TryMatchUserId() {
-			if(!Directory.Exists(this.UserdataPath))
-				return false;
-
-			if(this.IsFullPathValid())
-				return true;
-
-			string[] directories = Directory.GetDirectories(this.UserdataPath);
-
-			if(directories.Length == 0)
-				return false;
-
-			this.UserId = directories[0].Split('\\').Last();
-			return true;
-		}
-
 		public string GetFullPath() {
-			if(string.IsNullOrEmpty(this.UserdataPath) || string.IsNullOrEmpty(this.UserId))
+			if(string.IsNullOrEmpty(this.UserdataPath) || this.User is null)
 				return null;
 
-			string restOfPath = Path.Combine("632360", "remote", "UserProfiles");
+			string restOfPath = Path.Combine(STEAM_ROR2_ID, "remote", "UserProfiles");
 
-			return Path.Combine(this.UserdataPath, this.UserId, restOfPath);
+			return Path.Combine(this.UserdataPath, this.User.Id, restOfPath);
 		}
 
 		public bool IsFullPathValid() {
