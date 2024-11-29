@@ -143,7 +143,7 @@ To:
 {{0}}</value>
   </data>
   <data name="errorCoinWriteUnauthorized" xml:space="preserve">
-    <value>Failed profile modification due to a system I/O issue:
+    <value>Profile modification failed due to a system I/O issue:
 {{0}}
 
 {{1}}</value>
