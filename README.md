@@ -14,6 +14,9 @@ It's a Windows-only application. Check the chart below.
 | [`v1.0.2`](https://github.com/PapitaConPure/risk-of-coins/releases/download/v1.0.2/RiskOfOptions.zip) | Latest patch for version 1.0 that has most of the issues with the initial release addressed. This version requires you to specify a Steam User ID along with the Steam "userdata" path. |
 | [`v1.0.0`](https://github.com/PapitaConPure/risk-of-coins/releases/download/v1.0.0/RiskOfCoins_1_0_0.zip) | Buggiest. Shouldn't be used at all but hey, it's here.                                                                                                       |
 
+## Screenshots
+![image](https://github.com/user-attachments/assets/4151de3e-f206-437b-ad85-a9d1932188d1)
+
 ## Stuff used to make the thing
 * [Visual Studio Community](https://visualstudio.microsoft.com/vs/community/)
 * [.NET Framework v4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472)
