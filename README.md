@@ -1,5 +1,5 @@
 <div align="center"><img src="https://github.com/PapitaConPure/risk-of-coins/blob/master/app.png" width="256px"></div>
-<h1 align="center">Risk of Coins v1.2.0</h1>
+<h1 align="center">Risk of Coins v1.3.0</h1>
 <p align="center">You've probably already edited that one value too many times. This solves that issue. (no skill issue solution though)</p>
 
 <br>
