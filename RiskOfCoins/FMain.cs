@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Collections.Generic;
 using RiskOfCoins.Translator;
+using System.Drawing;
 
 namespace RiskOfCoins {
 	public partial class FMain: Form {
@@ -18,7 +19,7 @@ namespace RiskOfCoins {
 
 		public FMain() {
 			this.InitializeComponent();
-			
+
 			#region Directorio
 			this.dirRoot = Application.StartupPath;
 			this.dirBackup = Path.Combine(this.dirRoot, "Profile Backups");
@@ -54,6 +55,9 @@ namespace RiskOfCoins {
 		}
 
 		private void FPrincipal_Load(object sender, EventArgs e) {
+			this.cmbUser.BackColor = Color.FromArgb(24, 55, 81);
+			this.cmbUser.ListBackColor = Color.FromArgb(24, 55, 81);
+
 			this.ApplyLocale();
 
 			string path = this.wizard.SteamPath;
@@ -82,21 +86,17 @@ namespace RiskOfCoins {
 
 			if(!string.IsNullOrEmpty(coins))
 				this.tbLunarCoins.InputText = coins;
-
-			this.btnSaveProfiles.Enabled = this.wizard.IsFullPathValid();
 		}
 
 		private void ApplyLocale() {
 			this.btnLoadProfiles.Text = Tr.GetStr(TrCat.Main, "btnTextLoadProfilesBackup");
-			this.btnSaveProfiles.Text = Tr.GetStr(TrCat.Main, "btnTextSaveProfilesBackup");
 			this.cmbUser.DisplayText = Tr.GetStr(TrCat.Main, "cmbDisplayTextSteamUser");
 			this.tbPath.PlaceHolder = Tr.GetStr(TrCat.Main, "tbPlaceholderSteamPath");
 			this.fbdPath.Description = Tr.GetStr(TrCat.Main, "fbdPathDescription");
-			this.lblProfiles.Text = Tr.GetStr(TrCat.Main, "lblTextProfilesBackup");
 			this.lblPath.Text = Tr.GetStr(TrCat.Main, "lblTextSteamPath");
 			this.lblLunarCoins.Text = Tr.GetStr(TrCat.Common, "lunarCoins");
 			this.tbLunarCoins.PlaceHolder = Tr.GetStr(TrCat.Common, "amount");
-			this.btnApplyCoins.Text = Tr.GetStr(TrCat.Common, "apply");
+			this.btnBackupProfilesAndApplyCoins.Text = Tr.GetStr(TrCat.Main, "btnTextBackupAndApply");
 			this.btnQuit.Text = Tr.GetStr(TrCat.Common, "quit");
 		}
 
@@ -123,7 +123,7 @@ namespace RiskOfCoins {
 
 			this.UpdateUsers();
 			this.tbPath.InputText = this.wizard.SteamPath;
-			this.btnSaveProfiles.Enabled = this.wizard.IsFullPathValid();
+			this.btnBackupProfilesAndApplyCoins.Enabled = this.wizard.IsFullPathValid();
 		}
 
 		private void CmbUser_OnSelectedIndexChanged(object sender, EventArgs e) {
@@ -131,160 +131,36 @@ namespace RiskOfCoins {
 				return;
 
 			this.wizard.User = this.cmbUser.SelectedItem as User;
-			this.btnSaveProfiles.Enabled = this.wizard.IsFullPathValid();
+			this.btnBackupProfilesAndApplyCoins.Enabled = this.wizard.IsFullPathValid();
 		}
 
-		private void BtnSaveProfiles_Click(object sender, EventArgs e) {
+		private void BtnBackupProfilesAndApplyCoins_Click(object sender, EventArgs e) {
 			if(!this.ExpectPath()) {
-				this.btnSaveProfiles.Enabled = false;
+				this.btnBackupProfilesAndApplyCoins.Enabled = false;
 				return;
 			}
 
-			string profilesPath = this.wizard.GetFullPath();
-			string[] profileFilenames = this.wizard.GetProfileFilenames();
+			int successes, fails;
+			this.BackupProfiles(out successes, out fails);
 
-			if(profileFilenames is null) {
-				MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorBackupNoProfiles", profilesPath), "No Profiles", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return;
-			}
-
-			List<string> successful = new List<string>();
-			List<string> failed = new List<string>();
-
-			foreach(string filename in profileFilenames) {
-				string src  = Path.Combine(profilesPath,   filename);
-				string dest = Path.Combine(this.dirBackup, filename);
-
-				try {
-					if(File.Exists(dest))
-						File.Delete(dest);
-
-					File.Copy(src, dest);
-
-					successful.Add(filename);
-				} catch(UnauthorizedAccessException) {
-					MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorBackupProfileCopyUnauthorized", src, dest), "Access Forbidden", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					failed.Add(filename);
-				} catch(IOException ex) {
-					MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorBackupProfileCopyIO", src, dest, ex.Message), "I/O Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					failed.Add(filename);
-				} catch(Exception ex) {
-					MessageBox.Show(ex.Message, "Unexpected Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					failed.Add(filename);
-				}
-			}
-
-			if(successful.Count > 0) {
-				MessageBox.Show(Tr.GetStr(TrCat.Popups, "infoBackupSaveSavedList", string.Join("\n", successful)), "Task Finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-				this.pnlRowInputLunarCoins.Enabled = failed.Count == 0;
-			}
-
-			if(failed.Count > 0)
-				MessageBox.Show(Tr.GetStr(TrCat.Popups, "infoBackupSaveFailedList", string.Join("\n", failed)), "Task Finished", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			if(successes > 0 && fails == 0)
+				this.ApplyCoins();
 		}
 
 		private void BtnLoadProfiles_Click(object sender, EventArgs e) {
 			if(!this.ExpectPath()) {
-				this.btnSaveProfiles.Enabled = false;
+				this.btnBackupProfilesAndApplyCoins.Enabled = false;
 				return;
 			}
 
-			string profilesPath = this.wizard.GetFullPath();
-			string[] profileFilenames = Directory.GetFiles(this.dirBackup);
+			DialogResult resultado = MessageBox.Show(
+				Tr.GetStr(TrCat.Popups, "askBackupLoad"),
+				"",
+				MessageBoxButtons.YesNo,
+				MessageBoxIcon.Question);
 
-			if(profileFilenames is null) {
-				MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorBackupNoProfiles", profilesPath), "No Profiles", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return;
-			}
-
-			List<string> successful = new List<string>();
-			List<string> failed = new List<string>();
-
-			foreach(string profilePath in profileFilenames) {
-				string filename = profilePath.Split('\\').Last();
-
-				string src  = Path.Combine(this.dirBackup, filename);
-				string dest = Path.Combine(profilesPath,   filename);
-
-				try {
-					if(File.Exists(dest))
-						File.Delete(dest);
-
-					File.Copy(src, dest);
-
-					successful.Add(filename);
-				} catch(UnauthorizedAccessException) {
-					MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorBackupProfileCopyUnauthorized", src, dest), "Access Forbidden", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					failed.Add(filename);
-				} catch(IOException ex) {
-					MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorBackupProfileCopyIO", src, dest, ex.Message), "I/O Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					failed.Add(filename);
-				} catch(Exception ex) {
-					MessageBox.Show(ex.Message, "Unexpected Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					failed.Add(filename);
-				}
-			}
-
-			if(successful.Count > 0)
-				MessageBox.Show(Tr.GetStr(TrCat.Popups, "infoBackupLoadLoadedList", string.Join("\n", successful)), "Task Finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-			if(failed.Count > 0)
-				MessageBox.Show(Tr.GetStr(TrCat.Popups, "infoBackupLoadFailedList", string.Join("\n", failed)), "Task Finished", MessageBoxButtons.OK, MessageBoxIcon.Error);
-		}
-
-		private void BtnApplyCoins_Click(object sender, EventArgs e) {
-			if(!this.ExpectPath())
-				return;
-
-			int coins;
-			if(!int.TryParse(this.tbLunarCoins.InputText, out coins)) {
-				if(long.TryParse(this.tbLunarCoins.InputText, out _)) {
-					coins = int.MaxValue;
-					this.tbLunarCoins.InputText = coins.ToString();
-				} else {
-					MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorInvalidLunarCoins", $"{int.MaxValue:###,###,###,###}"), "Invalid value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-					return;
-				}
-			}
-
-			if(coins < 0) {
-				MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorInvalidLunarCoins", $"{int.MaxValue:###,###,###,###}"), "Invalid value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return;
-			}
-
-			string profilesPath = this.wizard.GetFullPath();
-			string[] profileFilenames = this.wizard.GetProfileFilenames();
-
-			List<string> successful = new List<string>();
-			List<string> failed = new List<string>();
-
-			foreach(string filename in profileFilenames) {
-				string profilePath = Path.Combine(profilesPath, filename);
-
-				try {
-					string profileData = File.ReadAllText(profilePath, Encoding.UTF8);
-					string newProfileData = Regex.Replace(profileData, "<coins>(\\d+)<\\/coins>", $"<coins>{coins}</coins>");
-					File.WriteAllText(profilePath, newProfileData, Encoding.UTF8);
-
-					successful.Add(filename);
-				} catch(UnauthorizedAccessException) {
-					MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorCoinWriteIO", profilePath), "Access Forbidden", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					failed.Add(filename);
-				} catch(IOException ex) {
-					MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorCoinWriteUnauthorized", profilePath, ex.Message), "I/O Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					failed.Add(filename);
-				} catch(Exception ex) {
-					MessageBox.Show(ex.Message, "Unexpected Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					failed.Add(filename);
-				}
-			}
-
-			if(successful.Count > 0)
-				MessageBox.Show(Tr.GetStr(TrCat.Popups, "infoCoinWriteWrittenList", string.Join("\n", successful)), "Task finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-			if(failed.Count > 0)
-				MessageBox.Show(Tr.GetStr(TrCat.Popups, "infoCoinWriteFailedList", string.Join("\n", failed)), "Task finished", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			if(resultado == DialogResult.Yes)
+				this.LoadProfiles();
 		}
 
 		private void BtnQuit_Click(object sender, EventArgs e) {
@@ -341,6 +217,176 @@ namespace RiskOfCoins {
 			}
 
 			return true;
+		}
+
+		private void ApplyCoins() {
+			int coins;
+			if(!int.TryParse(this.tbLunarCoins.InputText, out coins)) {
+				if(long.TryParse(this.tbLunarCoins.InputText, out _)) {
+					coins = int.MaxValue;
+					this.tbLunarCoins.InputText = coins.ToString();
+				} else {
+					MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorInvalidLunarCoins", $"{int.MaxValue:###,###,###,###}"), "Invalid value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return;
+				}
+			}
+
+			if(coins < 0) {
+				MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorInvalidLunarCoins", $"{int.MaxValue:###,###,###,###}"), "Invalid value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+
+			string profilesPath = this.wizard.GetFullPath();
+			string[] profileFilenames = this.wizard.GetProfileFilenames();
+
+			List<string> successful = new List<string>();
+			List<string> failed = new List<string>();
+
+			foreach(string filename in profileFilenames) {
+				string profilePath = Path.Combine(profilesPath, filename);
+
+				try {
+					string profileData = File.ReadAllText(profilePath, Encoding.UTF8);
+					string newProfileData = Regex.Replace(profileData, "<coins>(\\d+)<\\/coins>", $"<coins>{coins}</coins>");
+					File.WriteAllText(profilePath, newProfileData, Encoding.UTF8);
+
+					successful.Add(filename);
+				} catch(UnauthorizedAccessException) {
+					MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorCoinWriteIO", profilePath), "Access Forbidden", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					failed.Add(filename);
+				} catch(IOException ex) {
+					MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorCoinWriteUnauthorized", profilePath, ex.Message), "I/O Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					failed.Add(filename);
+				} catch(Exception ex) {
+					MessageBox.Show(ex.Message, "Unexpected Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					failed.Add(filename);
+				}
+			}
+
+			if(successful.Count > 0)
+				MessageBox.Show(Tr.GetStr(TrCat.Popups, "infoCoinWriteWrittenList", string.Join("\n", successful)), "Task finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+			if(failed.Count > 0)
+				MessageBox.Show(Tr.GetStr(TrCat.Popups, "infoCoinWriteFailedList", string.Join("\n", failed)), "Task finished", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		}
+
+		private void BackupProfiles(out int successes, out int fails) {
+			string profilesPath = this.wizard.GetFullPath();
+			string[] profileFilenames = this.wizard.GetProfileFilenames();
+
+			successes = fails = 0;
+
+			if(profileFilenames is null) {
+				MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorBackupNoProfiles", profilesPath), "No Profiles", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+
+			List<string> successfulList = new List<string>();
+			List<string> failedList = new List<string>();
+
+			foreach(string filename in profileFilenames) {
+				string src = Path.Combine(profilesPath, filename);
+				string dest = Path.Combine(this.dirBackup, filename);
+
+				try {
+					if(File.Exists(dest))
+						File.Delete(dest);
+
+					File.Copy(src, dest);
+
+					successfulList.Add(filename);
+				} catch(UnauthorizedAccessException) {
+					MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorBackupProfileCopyUnauthorized", src, dest), "Access Forbidden", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					failedList.Add(filename);
+				} catch(IOException ex) {
+					MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorBackupProfileCopyIO", src, dest, ex.Message), "I/O Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					failedList.Add(filename);
+				} catch(Exception ex) {
+					MessageBox.Show(ex.Message, "Unexpected Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					failedList.Add(filename);
+				}
+			}
+
+			if(successfulList.Count > 0)
+				MessageBox.Show(Tr.GetStr(TrCat.Popups, "infoBackupSaveSavedList", string.Join("\n", successfulList)), "Task Finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+			if(failedList.Count > 0)
+				MessageBox.Show(Tr.GetStr(TrCat.Popups, "infoBackupSaveFailedList", string.Join("\n", failedList)), "Task Finished", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+			successes = successfulList.Count;
+			fails = failedList.Count;
+		}
+
+		private void LoadProfiles() {
+			string profilesPath = this.wizard.GetFullPath();
+			string[] profileFilenames = Directory.GetFiles(this.dirBackup);
+
+			if(profileFilenames is null) {
+				MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorBackupNoProfiles", profilesPath), "No Profiles", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+
+			List<string> successful = new List<string>();
+			List<string> failed = new List<string>();
+
+			foreach(string profilePath in profileFilenames) {
+				string filename = profilePath.Split('\\').Last();
+
+				string src = Path.Combine(this.dirBackup, filename);
+				string dest = Path.Combine(profilesPath, filename);
+
+				try {
+					if(File.Exists(dest))
+						File.Delete(dest);
+
+					File.Copy(src, dest);
+
+					successful.Add(filename);
+				} catch(UnauthorizedAccessException) {
+					MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorBackupProfileCopyUnauthorized", src, dest), "Access Forbidden", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					failed.Add(filename);
+				} catch(IOException ex) {
+					MessageBox.Show(Tr.GetStr(TrCat.Popups, "errorBackupProfileCopyIO", src, dest, ex.Message), "I/O Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					failed.Add(filename);
+				} catch(Exception ex) {
+					MessageBox.Show(ex.Message, "Unexpected Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					failed.Add(filename);
+				}
+			}
+
+			if(successful.Count > 0)
+				MessageBox.Show(Tr.GetStr(TrCat.Popups, "infoBackupLoadLoadedList", string.Join("\n", successful)), "Task Finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+			if(failed.Count > 0)
+				MessageBox.Show(Tr.GetStr(TrCat.Popups, "infoBackupLoadFailedList", string.Join("\n", failed)), "Task Finished", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		}
+
+		private void BtnCoinsMinus100_Click(object sender, EventArgs e) {
+			int currentCoins;
+			int.TryParse(this.tbLunarCoins.InputText, out currentCoins);
+			this.tbLunarCoins.InputText = Math.Max(0, currentCoins - 100).ToString();
+		}
+
+		private void BtnCoinsMinus10_Click(object sender, EventArgs e) {
+			int currentCoins;
+			int.TryParse(this.tbLunarCoins.InputText, out currentCoins);
+			this.tbLunarCoins.InputText = Math.Max(0, currentCoins - 10).ToString();
+		}
+
+		private void BtnCoinsPlus10_Click(object sender, EventArgs e) {
+			int currentCoins;
+			int.TryParse(this.tbLunarCoins.InputText, out currentCoins);
+			this.tbLunarCoins.InputText = Math.Min(currentCoins + 10, int.MaxValue).ToString();
+		}
+
+		private void BtnCoinsPlus100_Click(object sender, EventArgs e) {
+			int currentCoins;
+			int.TryParse(this.tbLunarCoins.InputText, out currentCoins);
+			this.tbLunarCoins.InputText = Math.Min(currentCoins + 100, int.MaxValue).ToString();
+		}
+
+		private void BtnCoinsMax_Click(object sender, EventArgs e) {
+			this.tbLunarCoins.InputText = int.MaxValue.ToString();
 		}
 	}
 }
