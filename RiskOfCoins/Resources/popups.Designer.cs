@@ -61,6 +61,16 @@ namespace RiskOfCoins.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Do you really want to load the latest backup?
+        ///This might make your game profiles work again if they broke for some reason, but it will also undo anything you&apos;ve done in the game after the last time you applied lunar coins..
+        /// </summary>
+        internal static string askBackupLoad {
+            get {
+                return ResourceManager.GetString("askBackupLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Couldn&apos;t find any profiles in path:
         ///{{0}}.
         /// </summary>

@@ -117,8 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnTextBackupAndApply" xml:space="preserve">
+    <value>Backup RoR2 Profiles and Apply</value>
+  </data>
   <data name="btnTextLoadProfilesBackup" xml:space="preserve">
-    <value>Go Back to Latest Backup</value>
+    <value>Revert to Last Backup?</value>
     <comment>Action</comment>
   </data>
   <data name="btnTextSaveProfilesBackup" xml:space="preserve">
