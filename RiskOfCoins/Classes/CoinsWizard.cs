@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace RiskOfCoins {
+namespace RiskOfCoins.Classes {
 	[Serializable]
 	class CoinsWizard {
 		private const string STEAM_ROR2_ID = "632360";

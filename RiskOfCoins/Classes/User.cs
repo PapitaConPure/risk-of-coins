@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RiskOfCoins {
+namespace RiskOfCoins.Classes {
 	[Serializable]
 	internal class User {
 		public User(string id, string name) {

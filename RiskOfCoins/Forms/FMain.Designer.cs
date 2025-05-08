@@ -1,5 +1,4 @@
-﻿
-namespace RiskOfCoins {
+﻿namespace RiskOfCoins.Forms {
 	partial class FMain {
 		/// <summary>
 		/// Variable del diseñador necesaria.
@@ -89,7 +88,7 @@ namespace RiskOfCoins {
 			this.tbPath.PlaceHolderColor = System.Drawing.Color.DimGray;
 			this.tbPath.ReadOnly = false;
 			this.tbPath.SelectAllOnClick = true;
-			this.tbPath.Size = new System.Drawing.Size(338, 40);
+			this.tbPath.Size = new System.Drawing.Size(334, 40);
 			this.tbPath.Style = ControLib.SleekTextBox.TextBoxStyle.RoundRect;
 			this.tbPath.TabIndex = 0;
 			this.tbPath.TabStop = false;
@@ -107,7 +106,7 @@ namespace RiskOfCoins {
 			this.btnPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPath.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
 			this.btnPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
-			this.btnPath.Location = new System.Drawing.Point(354, 0);
+			this.btnPath.Location = new System.Drawing.Point(350, 0);
 			this.btnPath.Margin = new System.Windows.Forms.Padding(0);
 			this.btnPath.Name = "btnPath";
 			this.btnPath.PercentualRadius = true;
@@ -129,13 +128,13 @@ namespace RiskOfCoins {
 			this.pnlRowInputPath.Margin = new System.Windows.Forms.Padding(0);
 			this.pnlRowInputPath.Name = "pnlRowInputPath";
 			this.pnlRowInputPath.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-			this.pnlRowInputPath.Size = new System.Drawing.Size(714, 40);
+			this.pnlRowInputPath.Size = new System.Drawing.Size(710, 40);
 			this.pnlRowInputPath.TabIndex = 1;
 			// 
 			// panel2
 			// 
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel2.Location = new System.Drawing.Point(348, 0);
+			this.panel2.Location = new System.Drawing.Point(344, 0);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(6, 40);
 			this.panel2.TabIndex = 1;
@@ -143,7 +142,7 @@ namespace RiskOfCoins {
 			// panel6
 			// 
 			this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel6.Location = new System.Drawing.Point(396, 0);
+			this.panel6.Location = new System.Drawing.Point(392, 0);
 			this.panel6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.panel6.Name = "panel6";
 			this.panel6.Size = new System.Drawing.Size(20, 40);
@@ -153,7 +152,7 @@ namespace RiskOfCoins {
 			// 
 			this.pnlCmbUser.Controls.Add(this.cmbUser);
 			this.pnlCmbUser.Dock = System.Windows.Forms.DockStyle.Right;
-			this.pnlCmbUser.Location = new System.Drawing.Point(416, 0);
+			this.pnlCmbUser.Location = new System.Drawing.Point(412, 0);
 			this.pnlCmbUser.Name = "pnlCmbUser";
 			this.pnlCmbUser.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
 			this.pnlCmbUser.Size = new System.Drawing.Size(288, 40);
@@ -196,7 +195,7 @@ namespace RiskOfCoins {
 			this.tlpCenter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tlpCenter.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tlpCenter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tlpCenter.Size = new System.Drawing.Size(720, 317);
+			this.tlpCenter.Size = new System.Drawing.Size(716, 317);
 			this.tlpCenter.TabIndex = 3;
 			// 
 			// pnlForm
@@ -215,7 +214,7 @@ namespace RiskOfCoins {
 			this.pnlForm.Margin = new System.Windows.Forms.Padding(0);
 			this.pnlForm.Name = "pnlForm";
 			this.pnlForm.Padding = new System.Windows.Forms.Padding(3);
-			this.pnlForm.Size = new System.Drawing.Size(720, 296);
+			this.pnlForm.Size = new System.Drawing.Size(716, 296);
 			this.pnlForm.TabIndex = 3;
 			// 
 			// pnlRowInputQuit
@@ -226,7 +225,7 @@ namespace RiskOfCoins {
 			this.pnlRowInputQuit.Margin = new System.Windows.Forms.Padding(0);
 			this.pnlRowInputQuit.Name = "pnlRowInputQuit";
 			this.pnlRowInputQuit.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-			this.pnlRowInputQuit.Size = new System.Drawing.Size(714, 40);
+			this.pnlRowInputQuit.Size = new System.Drawing.Size(710, 40);
 			this.pnlRowInputQuit.TabIndex = 7;
 			// 
 			// btnQuit
@@ -245,7 +244,7 @@ namespace RiskOfCoins {
 			this.btnQuit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.btnQuit.Name = "btnQuit";
 			this.btnQuit.PercentualRadius = true;
-			this.btnQuit.Size = new System.Drawing.Size(694, 40);
+			this.btnQuit.Size = new System.Drawing.Size(690, 40);
 			this.btnQuit.TabIndex = 0;
 			this.btnQuit.Text = "Quit";
 			this.btnQuit.UseVisualStyleBackColor = false;
@@ -259,7 +258,7 @@ namespace RiskOfCoins {
 			this.panel4.Margin = new System.Windows.Forms.Padding(0);
 			this.panel4.Name = "panel4";
 			this.panel4.Padding = new System.Windows.Forms.Padding(10, 0, 10, 10);
-			this.panel4.Size = new System.Drawing.Size(714, 50);
+			this.panel4.Size = new System.Drawing.Size(710, 50);
 			this.panel4.TabIndex = 6;
 			// 
 			// btnLoadProfiles
@@ -278,7 +277,7 @@ namespace RiskOfCoins {
 			this.btnLoadProfiles.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
 			this.btnLoadProfiles.Name = "btnLoadProfiles";
 			this.btnLoadProfiles.PercentualRadius = true;
-			this.btnLoadProfiles.Size = new System.Drawing.Size(694, 40);
+			this.btnLoadProfiles.Size = new System.Drawing.Size(690, 40);
 			this.btnLoadProfiles.TabIndex = 0;
 			this.btnLoadProfiles.Text = "Revert to Last Backup?";
 			this.btnLoadProfiles.UseVisualStyleBackColor = false;
@@ -291,7 +290,7 @@ namespace RiskOfCoins {
 			this.panel3.Margin = new System.Windows.Forms.Padding(0);
 			this.panel3.Name = "panel3";
 			this.panel3.Padding = new System.Windows.Forms.Padding(10, 0, 10, 40);
-			this.panel3.Size = new System.Drawing.Size(714, 40);
+			this.panel3.Size = new System.Drawing.Size(710, 40);
 			this.panel3.TabIndex = 5;
 			// 
 			// pnlRowInputLunarCoins
@@ -310,7 +309,7 @@ namespace RiskOfCoins {
 			this.pnlRowInputLunarCoins.Margin = new System.Windows.Forms.Padding(0);
 			this.pnlRowInputLunarCoins.Name = "pnlRowInputLunarCoins";
 			this.pnlRowInputLunarCoins.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-			this.pnlRowInputLunarCoins.Size = new System.Drawing.Size(714, 40);
+			this.pnlRowInputLunarCoins.Size = new System.Drawing.Size(710, 40);
 			this.pnlRowInputLunarCoins.TabIndex = 4;
 			// 
 			// tbLunarCoins
@@ -327,7 +326,6 @@ namespace RiskOfCoins {
 			this.tbLunarCoins.InputColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
 			this.tbLunarCoins.InputText = "";
 			this.tbLunarCoins.Location = new System.Drawing.Point(10, 0);
-			this.tbLunarCoins.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tbLunarCoins.MinimumSize = new System.Drawing.Size(27, 31);
 			this.tbLunarCoins.Multiline = false;
 			this.tbLunarCoins.Name = "tbLunarCoins";
@@ -337,16 +335,16 @@ namespace RiskOfCoins {
 			this.tbLunarCoins.PlaceHolderColor = System.Drawing.Color.DimGray;
 			this.tbLunarCoins.ReadOnly = false;
 			this.tbLunarCoins.SelectAllOnClick = true;
-			this.tbLunarCoins.Size = new System.Drawing.Size(98, 40);
+			this.tbLunarCoins.Size = new System.Drawing.Size(94, 40);
 			this.tbLunarCoins.Style = ControLib.SleekTextBox.TextBoxStyle.RoundRect;
 			this.tbLunarCoins.TabIndex = 0;
-			this.tbLunarCoins.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.tbLunarCoins.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.tbLunarCoins.WordWrap = true;
 			// 
 			// panel7
 			// 
 			this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel7.Location = new System.Drawing.Point(108, 0);
+			this.panel7.Location = new System.Drawing.Point(104, 0);
 			this.panel7.Name = "panel7";
 			this.panel7.Size = new System.Drawing.Size(6, 40);
 			this.panel7.TabIndex = 10;
@@ -362,7 +360,7 @@ namespace RiskOfCoins {
 			this.btnCoinsMinus100.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnCoinsMinus100.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
 			this.btnCoinsMinus100.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
-			this.btnCoinsMinus100.Location = new System.Drawing.Point(114, 0);
+			this.btnCoinsMinus100.Location = new System.Drawing.Point(110, 0);
 			this.btnCoinsMinus100.Name = "btnCoinsMinus100";
 			this.btnCoinsMinus100.PercentualRadius = true;
 			this.btnCoinsMinus100.Size = new System.Drawing.Size(56, 40);
@@ -382,7 +380,7 @@ namespace RiskOfCoins {
 			this.btnCoinsMinus10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnCoinsMinus10.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
 			this.btnCoinsMinus10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
-			this.btnCoinsMinus10.Location = new System.Drawing.Point(170, 0);
+			this.btnCoinsMinus10.Location = new System.Drawing.Point(166, 0);
 			this.btnCoinsMinus10.Name = "btnCoinsMinus10";
 			this.btnCoinsMinus10.PercentualRadius = true;
 			this.btnCoinsMinus10.Size = new System.Drawing.Size(56, 40);
@@ -402,7 +400,7 @@ namespace RiskOfCoins {
 			this.btnCoinsPlus10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnCoinsPlus10.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
 			this.btnCoinsPlus10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
-			this.btnCoinsPlus10.Location = new System.Drawing.Point(226, 0);
+			this.btnCoinsPlus10.Location = new System.Drawing.Point(222, 0);
 			this.btnCoinsPlus10.Name = "btnCoinsPlus10";
 			this.btnCoinsPlus10.PercentualRadius = true;
 			this.btnCoinsPlus10.Size = new System.Drawing.Size(56, 40);
@@ -422,7 +420,7 @@ namespace RiskOfCoins {
 			this.btnCoinsPlus100.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnCoinsPlus100.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
 			this.btnCoinsPlus100.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
-			this.btnCoinsPlus100.Location = new System.Drawing.Point(282, 0);
+			this.btnCoinsPlus100.Location = new System.Drawing.Point(278, 0);
 			this.btnCoinsPlus100.Name = "btnCoinsPlus100";
 			this.btnCoinsPlus100.PercentualRadius = true;
 			this.btnCoinsPlus100.Size = new System.Drawing.Size(56, 40);
@@ -442,7 +440,7 @@ namespace RiskOfCoins {
 			this.btnCoinsMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnCoinsMax.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
 			this.btnCoinsMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
-			this.btnCoinsMax.Location = new System.Drawing.Point(338, 0);
+			this.btnCoinsMax.Location = new System.Drawing.Point(334, 0);
 			this.btnCoinsMax.Name = "btnCoinsMax";
 			this.btnCoinsMax.PercentualRadius = true;
 			this.btnCoinsMax.Size = new System.Drawing.Size(58, 40);
@@ -454,7 +452,7 @@ namespace RiskOfCoins {
 			// panel1
 			// 
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel1.Location = new System.Drawing.Point(396, 0);
+			this.panel1.Location = new System.Drawing.Point(392, 0);
 			this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(20, 40);
@@ -472,7 +470,7 @@ namespace RiskOfCoins {
 			this.btnBackupProfilesAndApplyCoins.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBackupProfilesAndApplyCoins.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
 			this.btnBackupProfilesAndApplyCoins.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
-			this.btnBackupProfilesAndApplyCoins.Location = new System.Drawing.Point(416, 0);
+			this.btnBackupProfilesAndApplyCoins.Location = new System.Drawing.Point(412, 0);
 			this.btnBackupProfilesAndApplyCoins.Name = "btnBackupProfilesAndApplyCoins";
 			this.btnBackupProfilesAndApplyCoins.PercentualRadius = true;
 			this.btnBackupProfilesAndApplyCoins.Size = new System.Drawing.Size(288, 40);
@@ -491,7 +489,7 @@ namespace RiskOfCoins {
 			this.panel5.Margin = new System.Windows.Forms.Padding(0);
 			this.panel5.Name = "panel5";
 			this.panel5.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-			this.panel5.Size = new System.Drawing.Size(714, 20);
+			this.panel5.Size = new System.Drawing.Size(710, 20);
 			this.panel5.TabIndex = 3;
 			// 
 			// lblLunarCoins
@@ -514,7 +512,7 @@ namespace RiskOfCoins {
 			this.pnlRowSplit1.Margin = new System.Windows.Forms.Padding(0);
 			this.pnlRowSplit1.Name = "pnlRowSplit1";
 			this.pnlRowSplit1.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-			this.pnlRowSplit1.Size = new System.Drawing.Size(714, 40);
+			this.pnlRowSplit1.Size = new System.Drawing.Size(710, 40);
 			this.pnlRowSplit1.TabIndex = 2;
 			// 
 			// pnlRowLabelPath
@@ -527,7 +525,7 @@ namespace RiskOfCoins {
 			this.pnlRowLabelPath.Margin = new System.Windows.Forms.Padding(0);
 			this.pnlRowLabelPath.Name = "pnlRowLabelPath";
 			this.pnlRowLabelPath.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-			this.pnlRowLabelPath.Size = new System.Drawing.Size(714, 20);
+			this.pnlRowLabelPath.Size = new System.Drawing.Size(710, 20);
 			this.pnlRowLabelPath.TabIndex = 0;
 			// 
 			// lblPath
@@ -553,14 +551,14 @@ namespace RiskOfCoins {
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnQuit;
-			this.ClientSize = new System.Drawing.Size(720, 317);
+			this.ClientSize = new System.Drawing.Size(716, 317);
 			this.Controls.Add(this.tlpCenter);
 			this.Font = new System.Drawing.Font("Segoe UI", 11F);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(720, 356);
+			this.MinimumSize = new System.Drawing.Size(732, 356);
 			this.Name = "FMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Risk of Coins";

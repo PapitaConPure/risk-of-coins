@@ -68,17 +68,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoinsWizard.cs" />
-    <Compile Include="FPreview.cs">
+    <Compile Include="Classes\CoinsWizard.cs" />
+    <Compile Include="Forms\FPreview.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FPreview.Designer.cs">
+    <Compile Include="Forms\FPreview.Designer.cs">
       <DependentUpon>FPreview.cs</DependentUpon>
     </Compile>
-    <Compile Include="FMain.cs">
+    <Compile Include="Forms\FMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FMain.Designer.cs">
+    <Compile Include="Forms\FMain.Designer.cs">
       <DependentUpon>FMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Resources\popups.es.Designer.cs">
@@ -86,7 +86,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Tr.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\popups.Designer.cs">
@@ -94,14 +93,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>popups.resx</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
-    <EmbeddedResource Include="FMain.en.resx">
+    <Compile Include="Classes\User.cs" />
+    <EmbeddedResource Include="Forms\FMain.en.resx">
       <DependentUpon>FMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FMain.resx">
+    <EmbeddedResource Include="Forms\FMain.resx">
       <DependentUpon>FMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FPreview.resx">
+    <EmbeddedResource Include="Forms\FPreview.resx">
       <DependentUpon>FPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\common.es.resx" />
@@ -116,6 +115,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Resources\popups.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -140,6 +140,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
+    <None Include="Resources\icono_popup_warning.png" />
+    <None Include="Resources\icono_popup_success.png" />
+    <None Include="Resources\icono_popup_info.png" />
+    <None Include="Resources\icono_popup_danger.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -157,6 +161,14 @@
     <ProjectReference Include="..\..\Librerías\ControlesBonitos\ControLib\ControLib.csproj">
       <Project>{5f65788c-c0c3-4503-83c6-bd053dfae638}</Project>
       <Name>ControLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Localization\Localization.csproj">
+      <Project>{891775E4-1738-4139-8D1F-3EB22C827379}</Project>
+      <Name>Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinFormsPopups\WinFormsPopups.csproj">
+      <Project>{C50D62F7-39DB-4E33-BBA7-C62DE443E95A}</Project>
+      <Name>WinFormsPopups</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.33529.622
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiskOfCoins", "RiskOfCoins\RiskOfCoins.csproj", "{BA0FFDF2-2AD8-4F61-9060-BD92878D50C6}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiskOfCoins", "RiskOfCoins\
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControLib", "..\Librerías\ControlesBonitos\ControLib\ControLib.csproj", "{5F65788C-C0C3-4503-83C6-BD053DFAE638}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsPopups", "WinFormsPopups\WinFormsPopups.csproj", "{C50D62F7-39DB-4E33-BBA7-C62DE443E95A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization", "Localization\Localization.csproj", "{891775E4-1738-4139-8D1F-3EB22C827379}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +28,14 @@ Global
 		{5F65788C-C0C3-4503-83C6-BD053DFAE638}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F65788C-C0C3-4503-83C6-BD053DFAE638}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F65788C-C0C3-4503-83C6-BD053DFAE638}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C50D62F7-39DB-4E33-BBA7-C62DE443E95A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C50D62F7-39DB-4E33-BBA7-C62DE443E95A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C50D62F7-39DB-4E33-BBA7-C62DE443E95A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C50D62F7-39DB-4E33-BBA7-C62DE443E95A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{891775E4-1738-4139-8D1F-3EB22C827379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{891775E4-1738-4139-8D1F-3EB22C827379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{891775E4-1738-4139-8D1F-3EB22C827379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{891775E4-1738-4139-8D1F-3EB22C827379}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
