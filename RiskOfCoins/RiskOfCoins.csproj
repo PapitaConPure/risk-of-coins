@@ -81,14 +81,14 @@
     <Compile Include="Forms\FMain.Designer.cs">
       <DependentUpon>FMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Resources\popups.es.Designer.cs">
+    <Compile Include="Resources\Text\popups.es.Designer.cs">
       <DependentUpon>popups.es.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\popups.Designer.cs">
+    <Compile Include="Resources\Text\popups.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>popups.resx</DependentUpon>
@@ -103,10 +103,10 @@
     <EmbeddedResource Include="Forms\FPreview.resx">
       <DependentUpon>FPreview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\common.es.resx" />
-    <EmbeddedResource Include="Resources\common.resx" />
-    <EmbeddedResource Include="Resources\main.es.resx" />
-    <EmbeddedResource Include="Resources\main.resx" />
+    <EmbeddedResource Include="Resources\Text\common.es.resx" />
+    <EmbeddedResource Include="Resources\Text\common.resx" />
+    <EmbeddedResource Include="Resources\Text\main.es.resx" />
+    <EmbeddedResource Include="Resources\Text\main.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -117,11 +117,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Resources\popups.es.resx">
+    <EmbeddedResource Include="Resources\Text\popups.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>popups.es.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\popups.resx">
+    <EmbeddedResource Include="Resources\Text\popups.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>popups.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -140,10 +140,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
-    <None Include="Resources\icono_popup_warning.png" />
-    <None Include="Resources\icono_popup_success.png" />
-    <None Include="Resources\icono_popup_info.png" />
-    <None Include="Resources\icono_popup_danger.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

@@ -24,7 +24,7 @@ namespace WinFormsPopups {
 				color: Color.FromArgb(180, 132, 29)
 			)},
 			{ Style.Error, new StyleProps(
-				icono: Properties.Resources.icon_popup_danger,
+				icono: Properties.Resources.icon_popup_error,
 				color: Color.FromArgb(163, 42, 50)
 			)},
 		};

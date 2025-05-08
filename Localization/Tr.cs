@@ -27,6 +27,15 @@ namespace Localization {
 			ResourceManager resourceManager = new ResourceManager(resourceManagerBaseName, TargetAssembly);
 			TranslationCategory category;
 
+			try {
+				resourceManager.GetResourceSet(TargetCulture, true, true);
+			} catch(MissingManifestResourceException ex) {
+				throw new ArgumentException(
+					$"Invalid resource manager base name. Make sure the resource manager exists in the assembly: {TargetAssembly.FullName}.",
+					nameof(resourceManagerBaseName),
+					ex);
+			}
+
 			if(translationCategories.TryGetValue(categoryKey, out category)) {
 				category.AddResourceManager(resourceManager);
 				return;

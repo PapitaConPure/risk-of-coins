@@ -63,9 +63,9 @@ namespace WinFormsPopups.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_popup_danger {
+        internal static System.Drawing.Bitmap icon_popup_error {
             get {
-                object obj = ResourceManager.GetObject("icon_popup_danger", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_popup_error", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

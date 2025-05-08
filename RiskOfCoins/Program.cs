@@ -16,9 +16,9 @@ namespace RiskOfCoins {
 			CultureInfo targetCulture = CultureInfo.CurrentUICulture;
 			Tr.Setup(targetAssembly, targetCulture);
 
-			Tr.AddSourceToCategory("common", "RiskOfCoins.Resources.common");
-			Tr.AddSourceToCategory("main", "RiskOfCoins.Resources.main");
-			Tr.AddSourceToCategory("popups", "RiskOfCoins.Resources.popups");
+			Tr.AddSourceToCategory("common", "RiskOfCoins.Resources.Text.common");
+			Tr.AddSourceToCategory("main", "RiskOfCoins.Resources.Text.main");
+			Tr.AddSourceToCategory("popups", "RiskOfCoins.Resources.Text.popups");
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
