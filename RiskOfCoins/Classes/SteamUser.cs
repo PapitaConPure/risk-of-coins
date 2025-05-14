@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace RiskOfCoins.Classes {
 	[Serializable]
-	internal class User {
-		public User(string id, string name) {
+	internal class SteamUser {
+		public SteamUser(string id, string name) {
 			this.Id = id;
 			this.Name = name;
 		}

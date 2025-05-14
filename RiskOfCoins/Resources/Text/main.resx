@@ -119,6 +119,7 @@
   </resheader>
   <data name="btnTextBackupAndApply" xml:space="preserve">
     <value>Backup RoR2 Profiles and Apply</value>
+    <comment>Label</comment>
   </data>
   <data name="btnTextLoadProfilesBackup" xml:space="preserve">
     <value>Revert to Last Backup?</value>
@@ -136,6 +137,7 @@
     <value>
 Select your Steam folder.
 Usually found in "C:\Program Files (x86)\".</value>
+    <comment>Label</comment>
   </data>
   <data name="lblTextProfilesBackup" xml:space="preserve">
     <value>You must backup of your RoR2 profiles before editing coins</value>
@@ -143,9 +145,10 @@ Usually found in "C:\Program Files (x86)\".</value>
   </data>
   <data name="lblTextSteamPath" xml:space="preserve">
     <value>Steam path + user</value>
-    <comment>Information</comment>
+    <comment>Label</comment>
   </data>
   <data name="tbPlaceholderSteamPath" xml:space="preserve">
     <value>Steam path</value>
+    <comment>Label</comment>
   </data>
 </root>

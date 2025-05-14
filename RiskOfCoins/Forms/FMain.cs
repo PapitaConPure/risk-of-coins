@@ -1,4 +1,5 @@
-﻿using RiskOfCoins.Classes;
+﻿using Localization;
+using RiskOfCoins.Classes;
 using System;
 using System.Windows.Forms;
 using System.Runtime.Serialization;
@@ -10,7 +11,8 @@ using System.Text;
 using System.Collections.Generic;
 using System.Drawing;
 using WinFormsPopups;
-using Localization;
+using System.Globalization;
+using System.Reflection;
 
 namespace RiskOfCoins.Forms {
 	public partial class FMain: Form {
@@ -21,6 +23,16 @@ namespace RiskOfCoins.Forms {
 
 		public FMain() {
 			this.InitializeComponent();
+
+			#region Localización
+			Assembly targetAssembly = typeof(FMain).Assembly;
+			CultureInfo targetCulture = CultureInfo.CurrentUICulture;
+			Tr.Setup(targetAssembly, targetCulture);
+
+			Tr.AddSourceToCategory("common", "RiskOfCoins.Resources.Text.common");
+			Tr.AddSourceToCategory("main", "RiskOfCoins.Resources.Text.main");
+			Tr.AddSourceToCategory("popups", "RiskOfCoins.Resources.Text.popups");
+			#endregion
 
 			#region Directorio
 			this.dirRoot = Application.StartupPath;
@@ -41,11 +53,11 @@ namespace RiskOfCoins.Forms {
 					this.wizard = bf.Deserialize(fs) as CoinsWizard;
 				}
 			} catch(UnauthorizedAccessException) {
-				Popup.Show(Tr.GetStr("popups", "errorSerializationLoad"), "Access Forbidden", Style.Warning);
+				Popup.Show(Tr.GetStr("popups", "errorSerializationLoad"), Tr.GetStr("popups", "errorAccessForbiddenCaption"), Style.Warning);
 			} catch(IOException) {
-				Popup.Show(Tr.GetStr("popups", "errorSerializationLoad"), "I/O Error", Style.Error);
+				Popup.Show(Tr.GetStr("popups", "errorSerializationLoad"), Tr.GetStr("popups", "errorIOCaption"), Style.Error);
 			} catch(SerializationException) {
-				Popup.Show(Tr.GetStr("popups", "errorSerializationLoad"), "Serialization Error", Style.Error);
+				Popup.Show(Tr.GetStr("popups", "errorSerializationLoad"), Tr.GetStr("popups", "errorSerializationCaption"), Style.Error);
 			} finally {
 				fs?.Close();
 			}
@@ -70,10 +82,10 @@ namespace RiskOfCoins.Forms {
 			this.UpdateUsers();
 
 			if(!(this.wizard.User is null)) {
-				User searchedUser = this.wizard.User;
+				SteamUser searchedUser = this.wizard.User;
 				int foundIndex = -1;
 				int userIndex = 0;
-				foreach(User u in this.cmbUser.Items) {
+				foreach(SteamUser u in this.cmbUser.Items) {
 					if(searchedUser.Id == u.Id) {
 						foundIndex = userIndex;
 						break;
@@ -105,8 +117,14 @@ namespace RiskOfCoins.Forms {
 
 		private void UpdateUsers() {
 			this.cmbUser.Items.Clear();
-			foreach(User u in this.wizard.FetchUsers())
+			foreach(SteamUser u in this.wizard.FetchUsers())
 				this.cmbUser.Items.Add(u);
+
+			if(this.cmbUser.Items.Count == 0) {
+				this.cmbUser.SelectedIndex = -1;
+				this.cmbUser.DisplayText = "";
+			} else if(this.cmbUser.SelectedIndex < 0)
+				this.cmbUser.SelectedIndex = 0;
 		}
 
 		private void BtnPath_Click(object sender, EventArgs e) {
@@ -118,8 +136,11 @@ namespace RiskOfCoins.Forms {
 				return;
 
 			this.wizard.SteamPath = this.fbdPath.SelectedPath;
+			bool steamValid = this.wizard.IsSteamPathValid();
 
-			if(!this.wizard.IsSteamPathValid()) {
+			this.cmbUser.Enabled = steamValid;
+
+			if(!steamValid) {
 				Popup.Show(
 					Tr.GetStr("popups", "errorInvalidSteamPath"),
 					Tr.GetStr("popups", "errorInvalidSteamPathCaption"),
@@ -130,22 +151,26 @@ namespace RiskOfCoins.Forms {
 
 			this.UpdateUsers();
 			this.tbPath.InputText = this.wizard.SteamPath;
-			this.btnBackupProfilesAndApplyCoins.Enabled = this.wizard.IsFullPathValid();
+			this.CheckEnableFullPathControls();
+
+			Popup.Show(Tr.GetStr("popups", "successSteamPath"), Style.Success);
 		}
 
 		private void CmbUser_OnSelectedIndexChanged(object sender, EventArgs e) {
 			if(this.cmbUser.SelectedIndex < 0)
 				return;
 
-			this.wizard.User = this.cmbUser.SelectedItem as User;
+			this.wizard.User = this.cmbUser.SelectedItem as SteamUser;
+			this.CheckEnableFullPathControls();
+		}
+
+		private void CheckEnableFullPathControls() {
 			this.btnBackupProfilesAndApplyCoins.Enabled = this.wizard.IsFullPathValid();
 		}
 
 		private void BtnBackupProfilesAndApplyCoins_Click(object sender, EventArgs e) {
-			if(!this.ExpectPath()) {
-				this.btnBackupProfilesAndApplyCoins.Enabled = false;
+			if(!this.ExpectFullPath())
 				return;
-			}
 
 			List<string> succeeded, failed;
 			bool backupFullySucceeded = this.BackupProfiles(out succeeded, out failed);
@@ -153,35 +178,35 @@ namespace RiskOfCoins.Forms {
 			if(succeeded.Count > 0)
 				Popup.Show(
 					Tr.GetStr("popups", "infoBackupSaveSavedList", string.Join("\n", succeeded)),
-					"Task Finished",
+					Tr.GetStr("popups", "infoTaskFinishedCaption"),
 					Style.Success,
 					6_000);
 
 			if(failed.Count > 0)
 				Popup.Show(
 					Tr.GetStr("popups", "infoBackupSaveFailedList", string.Join("\n", failed)),
-					"Task Finished",
+					Tr.GetStr("popups", "infoTaskFinishedCaption"),
 					Style.Error,
 					12_000);
 
 			if(!backupFullySucceeded) {
 				Popup.Show(
-					"Profiles backup wasn't fully successful, so no action will be taken.",
-					"Operation Aborted",
+					Tr.GetStr("popups", "errorFullBackup"),
+					Tr.GetStr("popups", "errorOperationAbortedCaption"),
 					Style.Warning,
 					8_000);
 				return;
 			}
 
-			Popup.Show(
-				"Profiles backup succeeded. Will try to apply coins.",
-				Style.Info,
-				5_000);
+			//Popup.Show(
+			//	Tr.GetStr("popups", "successFullBackup"),
+			//	Style.Info,
+			//	5_000);
 
 			if(!this.ApplyCoins(out succeeded, out failed)) {
 				Popup.Show(
-					"Couldn't find any profiles to apply coins to.",
-					"Invalid Operation",
+					Tr.GetStr("popups", "errorNoProfilesToBackup"),
+					Tr.GetStr("popups", "errorInvalidOperationCaption"),
 					Style.Warning,
 					8_000);
 				return;
@@ -190,27 +215,27 @@ namespace RiskOfCoins.Forms {
 			if(succeeded.Count > 0)
 				Popup.Show(
 					Tr.GetStr("popups", "infoCoinWriteWrittenList", string.Join("\n", succeeded)),
-					"Task finished",
+					Tr.GetStr("popups", "infoTaskFinishedCaption"),
 					Style.Success,
 					6_000);
 
 			if(failed.Count > 0)
 				Popup.Show(
 					Tr.GetStr("popups", "infoCoinWriteFailedList", string.Join("\n", failed)),
-					"Task finished",
+					Tr.GetStr("popups", "infoTaskFinishedCaption"),
 					Style.Error,
 					12_000);
 		}
 
 		private void BtnLoadProfiles_Click(object sender, EventArgs e) {
-			if(!this.ExpectPath()) {
+			if(!this.ExpectFullPath()) {
 				this.btnBackupProfilesAndApplyCoins.Enabled = false;
 				return;
 			}
 
 			DialogResult resultado = Dialog.ShowDialog(
 				Tr.GetStr("popups", "askBackupLoad"),
-				"Confirmation",
+				Tr.GetStr("popups", "askConfirmationCaption"),
 				DialogButtons.YesNo,
 				Style.Question);
 
@@ -222,8 +247,8 @@ namespace RiskOfCoins.Forms {
 
 			if(!hadProfilesToLoad) {
 				Popup.Show(
-					"Couldn't find any profiles to backup.",
-					"Invalid Operation",
+					Tr.GetStr("popups", "errorNoProfilesToLoad"),
+					Tr.GetStr("popups", "errorInvalidOperationCaption"),
 					Style.Warning,
 					8_000);
 				return;
@@ -232,14 +257,14 @@ namespace RiskOfCoins.Forms {
 			if(succeeded.Count > 0)
 				Popup.Show(
 					Tr.GetStr("popups", "infoBackupLoadLoadedList", string.Join("\n", succeeded)),
-					"Reverted Profiles",
-					Style.Success,
+					Tr.GetStr("popups", "infoRevertedProfilesCaption"),
+					Style.Info,
 					6_000);
 
 			if(failed.Count > 0)
 				Popup.Show(
 					Tr.GetStr("popups", "infoBackupLoadFailedList", string.Join("\n", failed)),
-					"Problems During Revertion",
+					Tr.GetStr("popups", "errorProblemsDuringRevertionCaption"),
 					Style.Error,
 					12_000);
 		}
@@ -256,7 +281,7 @@ namespace RiskOfCoins.Forms {
 				this.wizard.SteamPath = this.tbPath.InputText;
 
 			if(this.wizard.User is null)
-				this.wizard.User = this.cmbUser.SelectedItem as User;
+				this.wizard.User = this.cmbUser.SelectedItem as SteamUser;
 
 			int lunarCoins;
 			if(int.TryParse(this.tbLunarCoins.InputText, out lunarCoins))
@@ -268,19 +293,19 @@ namespace RiskOfCoins.Forms {
 				BinaryFormatter bf = new BinaryFormatter();
 				bf.Serialize(fs, this.wizard);
 			} catch(UnauthorizedAccessException) {
-				Popup.Show(Tr.GetStr("popups", "errorSerializationSave"), "Access Forbidden", Style.Warning);
+				Popup.Show(Tr.GetStr("popups", "errorSerializationSave"), Tr.GetStr("popups", "errorAccessForbiddenCaption"), Style.Warning);
 			} catch(IOException) {
-				Popup.Show(Tr.GetStr("popups", "errorSerializationSave"), "I/O Error", Style.Error);
+				Popup.Show(Tr.GetStr("popups", "errorSerializationSave"), Tr.GetStr("popups", "errorIOCaption"), Style.Error);
 			} finally {
 				fs?.Close();
 			}
 		}
 
-		private bool ExpectPath() {
+		private bool ExpectFullPath() {
 			if(!this.wizard.IsSteamPathValid()) {
 				Popup.Show(
 					Tr.GetStr("popups", "errorSteamPathWasInvalid"),
-					"Invalid Steam Path",
+					Tr.GetStr("popups", "errorSteamPathWasInvalidCaption"),
 					Style.Warning);
 				this.tbPath.ResetText();
 				this.btnPath.Focus();
@@ -290,18 +315,20 @@ namespace RiskOfCoins.Forms {
 			if(!this.wizard.IsFullPathValid()) {
 				Popup.Show(
 					Tr.GetStr("popups", "errorUserWasInvalid"),
-					"Invalid user ID",
+					Tr.GetStr("popups", "errorInvalidUserIdCaption"),
 					Style.Warning);
 
 				this.cmbUser.SelectedIndex = -1;
 
 				this.cmbUser.Items.Clear();
-				foreach(User user in this.wizard.FetchUsers())
+				foreach(SteamUser user in this.wizard.FetchUsers())
 					this.cmbUser.Items.Add(user);
 
 				this.cmbUser.Focus();
 				return false;
 			}
+
+			this.CheckEnableFullPathControls();
 
 			return true;
 		}
@@ -335,7 +362,7 @@ namespace RiskOfCoins.Forms {
 			if(coins < 0) {
 				Popup.Show(
 					Tr.GetStr("popups", "errorInvalidLunarCoins", $"{int.MaxValue:###,###,###,###}"),
-					"Invalid value",
+					Tr.GetStr("popups", "invalidValueCaption"),
 					Style.Warning);
 				return false;
 			}
@@ -353,13 +380,13 @@ namespace RiskOfCoins.Forms {
 
 					succeeded.Add(filename);
 				} catch(UnauthorizedAccessException) {
-					Popup.Show(Tr.GetStr("popups", "errorCoinWriteIO", profilePath), "Access Forbidden", Style.Warning);
+					Popup.Show(Tr.GetStr("popups", "errorCoinWriteIO", profilePath), Tr.GetStr("popups", "errorAccessForbiddenCaption"), Style.Warning);
 					failed.Add(filename);
 				} catch(IOException ex) {
-					Popup.Show(Tr.GetStr("popups", "errorCoinWriteUnauthorized", profilePath, ex.Message), "I/O Error", Style.Error);
+					Popup.Show(Tr.GetStr("popups", "errorCoinWriteUnauthorized", profilePath, ex.Message), Tr.GetStr("popups", "errorIOCaption"), Style.Error);
 					failed.Add(filename);
 				} catch(Exception ex) {
-					Popup.Show(ex.Message, "Unexpected Exception", Style.Error);
+					Popup.Show(ex.Message, Tr.GetStr("popups", "errorUnexpectedExceptionCaption"), Style.Error, new Anim(400, 5000, 2000));
 					failed.Add(filename);
 				}
 			}
@@ -403,10 +430,10 @@ namespace RiskOfCoins.Forms {
 
 					succeeded.Add(filename);
 				} catch(UnauthorizedAccessException) {
-					Popup.Show(Tr.GetStr("popups", "errorBackupProfileCopyUnauthorized", src, dest), "Access Forbidden", Style.Warning);
+					Popup.Show(Tr.GetStr("popups", "errorBackupProfileCopyUnauthorized", src, dest), Tr.GetStr("popups", "errorAccessForbiddenCaption"), Style.Warning);
 					failed.Add(filename);
 				} catch(IOException ex) {
-					Popup.Show(Tr.GetStr("popups", "errorBackupProfileCopyIO", src, dest, ex.Message), "I/O Error", Style.Error);
+					Popup.Show(Tr.GetStr("popups", "errorBackupProfileCopyIO", src, dest, ex.Message), Tr.GetStr("popups", "errorIOCaption"), Style.Error);
 					failed.Add(filename);
 				} catch(Exception ex) {
 					Popup.Show(ex.Message, "Unexpected Exception", Style.Error);
@@ -455,10 +482,10 @@ namespace RiskOfCoins.Forms {
 
 					succeeded.Add(filename);
 				} catch(UnauthorizedAccessException) {
-					Popup.Show(Tr.GetStr("popups", "errorBackupProfileCopyUnauthorized", src, dest), "Access Forbidden", Style.Warning);
+					Popup.Show(Tr.GetStr("popups", "errorBackupProfileCopyUnauthorized", src, dest), Tr.GetStr("popups", "errorAccessForbiddenCaption"), Style.Warning);
 					failed.Add(filename);
 				} catch(IOException ex) {
-					Popup.Show(Tr.GetStr("popups", "errorBackupProfileCopyIO", src, dest, ex.Message), "I/O Error", Style.Error);
+					Popup.Show(Tr.GetStr("popups", "errorBackupProfileCopyIO", src, dest, ex.Message), Tr.GetStr("popups", "errorIOCaption"), Style.Error);
 					failed.Add(filename);
 				} catch(Exception ex) {
 					Popup.Show(ex.Message, "Unexpected Exception", Style.Error);

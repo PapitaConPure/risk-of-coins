@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="errorAccessForbiddenCaption" xml:space="preserve">
+    <value>Acceso denegado</value>
+  </data>
   <data name="askBackupLoad" xml:space="preserve">
     <value>¿Realmente quieres cargar el último respaldo?
 Esto puede lograr que tus perfiles del juego vuelvan a funcionar si es que se rompieron por algún motivo, pero también revertirá todo lo que hiciste en el juego desde la última vez que aplicaste monedas lunares.</value>
@@ -170,6 +173,9 @@ Hasta:
   <data name="errorSteamPathWasInvalid" xml:space="preserve">
     <value>¡La ruta de Steam seleccionada no es una carpeta o no existe!</value>
   </data>
+  <data name="errorSteamPathWasInvalidCaption" xml:space="preserve">
+    <value>Ruta de Steam inválida</value>
+  </data>
   <data name="errorUserWasInvalid" xml:space="preserve">
     <value>El usuario no fue válido. ¡Inténtalo otra vez!</value>
   </data>
@@ -196,5 +202,53 @@ Hasta:
   <data name="infoCoinWriteWrittenList" xml:space="preserve">
     <value>Perfiles modificados:
 {{0}}</value>
+  </data>
+  <data name="invalidValueCaption" xml:space="preserve">
+    <value>Valor inválido</value>
+  </data>
+  <data name="errorIOCaption" xml:space="preserve">
+    <value>Error de E/S</value>
+  </data>
+  <data name="errorSerializationCaption" xml:space="preserve">
+    <value>Error de serialización</value>
+  </data>
+  <data name="successSteamPath" xml:space="preserve">
+    <value>Se actualizó la carpeta de Steam.</value>
+  </data>
+  <data name="errorOperationAbortedCaption" xml:space="preserve">
+    <value>Operación abortada</value>
+  </data>
+  <data name="errorInvalidOperationCaption" xml:space="preserve">
+    <value>Operación Inválida</value>
+  </data>
+  <data name="infoTaskFinishedCaption" xml:space="preserve">
+    <value>Tarea concluída</value>
+  </data>
+  <data name="errorFullBackup" xml:space="preserve">
+    <value>El respaldo de perfiles no pudo completarse correctamente, por lo que no se tomará acción.</value>
+  </data>
+  <data name="successFullBackup" xml:space="preserve">
+    <value>El respaldo de perfiles se completó sin problemas. Se intentará aplicar monedas.</value>
+  </data>
+  <data name="errorNoProfilesToBackup" xml:space="preserve">
+    <value>No se encontraron perfiles a los cuáles aplicar monedas.</value>
+  </data>
+  <data name="askConfirmationCaption" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="errorNoProfilesToLoad" xml:space="preserve">
+    <value>No se encontraron perfiles para cargar respaldos.</value>
+  </data>
+  <data name="infoRevertedProfilesCaption" xml:space="preserve">
+    <value>Perfiles revertidos</value>
+  </data>
+  <data name="errorProblemsDuringRevertionCaption" xml:space="preserve">
+    <value>Problemas al revertir</value>
+  </data>
+  <data name="errorInvalidUserIdCaption" xml:space="preserve">
+    <value>ID de usuario inválida</value>
+  </data>
+  <data name="errorUnexpectedExceptionCaption" xml:space="preserve">
+    <value>Excepción inesperada</value>
   </data>
 </root>

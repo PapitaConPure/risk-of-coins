@@ -71,6 +71,24 @@ namespace RiskOfCoins.Resources.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirmation.
+        /// </summary>
+        internal static string askConfirmationCaption {
+            get {
+                return ResourceManager.GetString("askConfirmationCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access Forbidden.
+        /// </summary>
+        internal static string errorAccessForbiddenCaption {
+            get {
+                return ResourceManager.GetString("errorAccessForbiddenCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Couldn&apos;t find any profiles in path:
         ///{{0}}.
         /// </summary>
@@ -132,11 +150,29 @@ namespace RiskOfCoins.Resources.Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profiles backup wasn&apos;t fully successful, so no action will be taken..
+        /// </summary>
+        internal static string errorFullBackup {
+            get {
+                return ResourceManager.GetString("errorFullBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lunar coins amount must be a positive integer up to {{0}}.
         /// </summary>
         internal static string errorInvalidLunarCoins {
             get {
                 return ResourceManager.GetString("errorInvalidLunarCoins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Operation.
+        /// </summary>
+        internal static string errorInvalidOperationCaption {
+            get {
+                return ResourceManager.GetString("errorInvalidOperationCaption", resourceCulture);
             }
         }
         
@@ -155,6 +191,69 @@ namespace RiskOfCoins.Resources.Text {
         internal static string errorInvalidSteamPathCaption {
             get {
                 return ResourceManager.GetString("errorInvalidSteamPathCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid User ID.
+        /// </summary>
+        internal static string errorInvalidUserIdCaption {
+            get {
+                return ResourceManager.GetString("errorInvalidUserIdCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I/O Error.
+        /// </summary>
+        internal static string errorIOCaption {
+            get {
+                return ResourceManager.GetString("errorIOCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t find any profiles to apply coins to..
+        /// </summary>
+        internal static string errorNoProfilesToBackup {
+            get {
+                return ResourceManager.GetString("errorNoProfilesToBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t find any profiles to load backups of..
+        /// </summary>
+        internal static string errorNoProfilesToLoad {
+            get {
+                return ResourceManager.GetString("errorNoProfilesToLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation Aborted.
+        /// </summary>
+        internal static string errorOperationAbortedCaption {
+            get {
+                return ResourceManager.GetString("errorOperationAbortedCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Problems During Revertion.
+        /// </summary>
+        internal static string errorProblemsDuringRevertionCaption {
+            get {
+                return ResourceManager.GetString("errorProblemsDuringRevertionCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Serialization Error&quot;.
+        /// </summary>
+        internal static string errorSerializationCaption {
+            get {
+                return ResourceManager.GetString("errorSerializationCaption", resourceCulture);
             }
         }
         
@@ -182,6 +281,24 @@ namespace RiskOfCoins.Resources.Text {
         internal static string errorSteamPathWasInvalid {
             get {
                 return ResourceManager.GetString("errorSteamPathWasInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Steam Path.
+        /// </summary>
+        internal static string errorSteamPathWasInvalidCaption {
+            get {
+                return ResourceManager.GetString("errorSteamPathWasInvalidCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected Exception.
+        /// </summary>
+        internal static string errorUnexpectedExceptionCaption {
+            get {
+                return ResourceManager.GetString("errorUnexpectedExceptionCaption", resourceCulture);
             }
         }
         
@@ -251,6 +368,51 @@ namespace RiskOfCoins.Resources.Text {
         internal static string infoCoinWriteWrittenList {
             get {
                 return ResourceManager.GetString("infoCoinWriteWrittenList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reverted Profiles.
+        /// </summary>
+        internal static string infoRevertedProfilesCaption {
+            get {
+                return ResourceManager.GetString("infoRevertedProfilesCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task Finished.
+        /// </summary>
+        internal static string infoTaskFinishedCaption {
+            get {
+                return ResourceManager.GetString("infoTaskFinishedCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Value.
+        /// </summary>
+        internal static string invalidValueCaption {
+            get {
+                return ResourceManager.GetString("invalidValueCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profiles backup succeeded. Will try to apply coins..
+        /// </summary>
+        internal static string successFullBackup {
+            get {
+                return ResourceManager.GetString("successFullBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steam Path updated..
+        /// </summary>
+        internal static string successSteamPath {
+            get {
+                return ResourceManager.GetString("successSteamPath", resourceCulture);
             }
         }
     }

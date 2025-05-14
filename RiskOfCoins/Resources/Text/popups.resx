@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="errorAccessForbiddenCaption" xml:space="preserve">
+    <value>Access Forbidden</value>
+  </data>
   <data name="askBackupLoad" xml:space="preserve">
     <value>Do you really want to load the latest backup?
 This might make your game profiles work again if they broke for some reason, but it will also undo anything you've done in the game after the last time you applied lunar coins.</value>
@@ -170,6 +173,9 @@ To:
   <data name="errorSteamPathWasInvalid" xml:space="preserve">
     <value>The selected Steam path isn't a folder or doesn't exist!</value>
   </data>
+  <data name="errorSteamPathWasInvalidCaption" xml:space="preserve">
+    <value>Invalid Steam Path</value>
+  </data>
   <data name="errorUserWasInvalid" xml:space="preserve">
     <value>The user wasn't valid. Try it again!</value>
   </data>
@@ -196,5 +202,53 @@ To:
   <data name="infoCoinWriteWrittenList" xml:space="preserve">
     <value>Modified profiles:
 {{0}}</value>
+  </data>
+  <data name="invalidValueCaption" xml:space="preserve">
+    <value>Invalid Value</value>
+  </data>
+  <data name="errorIOCaption" xml:space="preserve">
+    <value>I/O Error</value>
+  </data>
+  <data name="errorSerializationCaption" xml:space="preserve">
+    <value>"Serialization Error"</value>
+  </data>
+  <data name="successSteamPath" xml:space="preserve">
+    <value>Steam Path updated.</value>
+  </data>
+  <data name="errorOperationAbortedCaption" xml:space="preserve">
+    <value>Operation Aborted</value>
+  </data>
+  <data name="errorInvalidOperationCaption" xml:space="preserve">
+    <value>Invalid Operation</value>
+  </data>
+  <data name="infoTaskFinishedCaption" xml:space="preserve">
+    <value>Task Finished</value>
+  </data>
+  <data name="errorFullBackup" xml:space="preserve">
+    <value>Profiles backup wasn't fully successful, so no action will be taken.</value>
+  </data>
+  <data name="successFullBackup" xml:space="preserve">
+    <value>Profiles backup succeeded. Will try to apply coins.</value>
+  </data>
+  <data name="errorNoProfilesToBackup" xml:space="preserve">
+    <value>Couldn't find any profiles to apply coins to.</value>
+  </data>
+  <data name="askConfirmationCaption" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="errorNoProfilesToLoad" xml:space="preserve">
+    <value>Couldn't find any profiles to load backups of.</value>
+  </data>
+  <data name="infoRevertedProfilesCaption" xml:space="preserve">
+    <value>Reverted Profiles</value>
+  </data>
+  <data name="errorProblemsDuringRevertionCaption" xml:space="preserve">
+    <value>Problems During Revertion</value>
+  </data>
+  <data name="errorInvalidUserIdCaption" xml:space="preserve">
+    <value>Invalid User ID</value>
+  </data>
+  <data name="errorUnexpectedExceptionCaption" xml:space="preserve">
+    <value>Unexpected Exception</value>
   </data>
 </root>

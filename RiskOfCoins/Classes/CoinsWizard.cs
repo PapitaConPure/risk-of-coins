@@ -47,12 +47,12 @@ namespace RiskOfCoins.Classes {
 			}
 		}
 
-		public User User { set; get; }
+		public SteamUser User { set; get; }
 
 		public int LunarCoins { set; get; }
 
-		public List<User> FetchUsers() {
-			List<User> users = new List<User>();
+		public List<SteamUser> FetchUsers() {
+			List<SteamUser> users = new List<SteamUser>();
 
 			if(this.steamPath is null)
 				return users;
@@ -83,7 +83,7 @@ namespace RiskOfCoins.Classes {
 
 				userId = userPath.Split('\\').Last();
 				userName = userNameMatch.Groups[1].Value;
-				users.Add(new User(userId, userName));
+				users.Add(new SteamUser(userId, userName));
 			}
 
 			return users;
@@ -109,7 +109,7 @@ namespace RiskOfCoins.Classes {
 		}
 
 		public string GetFullPath() {
-			if(string.IsNullOrEmpty(this.SteamPath) || this.User is null)
+			if(string.IsNullOrWhiteSpace(this.SteamPath) || this.User is null)
 				return null;
 
 			string userPath = Path.Combine("userdata", this.User.Id);
@@ -120,14 +120,14 @@ namespace RiskOfCoins.Classes {
 
 		public bool IsFullPathValid() {
 			string fullPath = this.GetFullPath();
-			return !string.IsNullOrEmpty(fullPath) && Directory.Exists(fullPath);
+			return !string.IsNullOrWhiteSpace(fullPath) && Directory.Exists(fullPath);
 		}
 
 		public bool IsSteamPathValid() {
-			if(string.IsNullOrEmpty(this.steamPath))
+			if(string.IsNullOrWhiteSpace(this.SteamPath))
 				return false;
 
-			string userdataPath = Path.Combine(this.steamPath, "userdata");
+			string userdataPath = Path.Combine(this.SteamPath, "userdata");
 			return Directory.Exists(userdataPath);
 		}
 	}

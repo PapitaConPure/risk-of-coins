@@ -24,6 +24,7 @@ namespace RiskOfCoins {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FPreview));
 			this.btnClose = new ControLib.SleekButton();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.tbPreview = new System.Windows.Forms.TextBox();
@@ -94,6 +95,7 @@ namespace RiskOfCoins {
 			this.ControlBox = false;
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FPreview";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
